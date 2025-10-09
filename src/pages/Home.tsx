@@ -16,10 +16,22 @@ const HomePage = () => {
               <p style={styles.heroSubtitle}>
                 A modern barbershop where precision meets style. At Cut Culture, we don't just give haircuts, we create confidence. We are dedicated to clean fades, sharp lines, and timeless looks tailored to you.
               </p>
-              <div style={styles.heroButtons}>
-                <button style={styles.primaryButton}>Book Appointment</button>
-                <button style={styles.secondaryButton}>View Services</button>
-              </div>
+             <div style={styles.heroButtons}>
+  <button
+    style={styles.primaryButton}
+    onClick={() => (window.location.href = "/BookingPage")}
+  >
+    Book Appointment
+  </button>
+
+  <button
+    style={styles.secondaryButton}
+    onClick={() => (window.location.href = "/ServicesPage")}
+  >
+    View Services
+  </button>
+</div>
+
             </div>
             <div style={styles.heroImage}>
               <div style={styles.imagePlaceholder}>
@@ -57,7 +69,7 @@ const HomePage = () => {
                   <span style={styles.feature}>Sharp Lines</span>
                   <span style={styles.feature}>Style Consultation</span>
                 </div>
-                <button style={styles.serviceButton}>Learn More</button>
+               
               </div>
             </div>
 
@@ -78,7 +90,7 @@ const HomePage = () => {
                   <span style={styles.feature}>Hot Towel</span>
                   <span style={styles.feature}>Oil Treatment</span>
                 </div>
-                <button style={styles.serviceButton}>Learn More</button>
+                {/* <button style={styles.serviceButton}>Learn More</button> */}
               </div>
             </div>
 
@@ -99,7 +111,7 @@ const HomePage = () => {
                   <span style={styles.feature}>Hairline Design</span>
                   <span style={styles.feature}>Precision Work</span>
                 </div>
-                <button style={styles.serviceButton}>Learn More</button>
+                {/* <button style={styles.serviceButton}>Learn More</button> */}
               </div>
             </div>
 
@@ -119,7 +131,7 @@ const HomePage = () => {
                   <span style={styles.feature}>Facial Massage</span>
                   <span style={styles.feature}>Hair Treatment</span>
                 </div>
-                <button style={styles.serviceButton}>Learn More</button>
+                {/* <button style={styles.serviceButton}>Learn More</button> */}
               </div>
             </div>
           </div>
@@ -136,7 +148,12 @@ const HomePage = () => {
               Book your appointment today and experience the culture of precision grooming and exceptional service.
             </p>
             <div style={styles.ctaButtons}>
-              <button style={styles.ctaPrimaryButton}>Book Now</button>
+              <button
+    style={styles.primaryButton}
+    onClick={() => (window.location.href = "/BookingPage")}
+  >
+    Book now
+  </button>
               <button style={styles.ctaSecondaryButton}>Call:  (913) 313-0064</button>
             </div>
           </div>

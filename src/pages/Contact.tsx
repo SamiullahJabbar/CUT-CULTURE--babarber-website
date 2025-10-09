@@ -333,9 +333,12 @@ const ContactPage = () => {
               <a href="tel:9133130064" style={styles.ctaButtonPrimary}>
                 Call to Book:  (913) 313-0064
               </a>
-              <button style={styles.ctaButtonSecondary}>
-                View Services
-              </button>
+              <button
+    style={styles.ctaButtonSecondary}
+    onClick={() => (window.location.href = "/ServicesPage")}
+  >
+    View Services
+  </button>
             </div>
           </div>
         </section>

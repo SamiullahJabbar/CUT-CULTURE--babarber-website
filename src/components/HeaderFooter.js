@@ -419,7 +419,7 @@ function Layout({ children }) {
               Premium barber services where precision meets style. We don't just give haircuts, 
               we create confidence with clean fades, sharp lines, and timeless looks tailored to you.
             </p>
-            <div style={socialIconsStyle}>
+            {/* <div style={socialIconsStyle}>
               {socialLinks.map((social, index) => (
                 <a 
                   key={index}
@@ -443,7 +443,7 @@ function Layout({ children }) {
                   {social.icon}
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
           
           {Object.entries(footerLinks).map(([section, links]) => (

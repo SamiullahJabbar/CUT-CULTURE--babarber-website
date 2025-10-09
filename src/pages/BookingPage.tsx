@@ -373,9 +373,12 @@ const BookingPage = () => {
               <a href="tel:9133130064" style={styles.ctaButtonPrimary}>
                 Call Now: (913) 313-0064
               </a>
-              <button style={styles.ctaButtonSecondary}>
-                View Our Location
-              </button>
+              <button
+    style={styles.ctaButtonSecondary}
+    onClick={() => (window.location.href = "/")}
+  >
+    View Our Location
+  </button>
             </div>
           </div>
         </section>

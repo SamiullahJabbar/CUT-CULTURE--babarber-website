@@ -307,10 +307,22 @@ const AboutPage = () => {
               Ready to join the Cut Culture family? Book your appointment and discover why we're more than just a barbershop.
             </p>
             <div style={styles.ctaButtons}>
-              {/* CTA Button - Pulse animation remains in CSS, safe to use */}
-              <button className="cta-primary-button" style={styles.ctaPrimaryButton}>Book Your Cut</button>
-              <button style={styles.ctaSecondaryButton}>Visit Our Shop</button>
-            </div>
+  {/* CTA Button - Pulse animation remains in CSS, safe to use */}
+  <button
+    className="cta-primary-button"
+    style={styles.ctaPrimaryButton}
+    onClick={() => (window.location.href = "/BookingPage")}
+  >
+    Book Your Cut
+  </button>
+  <button
+    style={styles.ctaSecondaryButton}
+    onClick={() => (window.location.href = "/")}
+  >
+    Visit Our Shop
+  </button>
+</div>
+
           </div>
         </section>
       </div>

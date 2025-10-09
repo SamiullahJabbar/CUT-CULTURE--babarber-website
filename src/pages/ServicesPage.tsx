@@ -292,9 +292,15 @@ const ServicesPage = () => {
               </div>
             </div>
             <div style={styles.bookingActions}>
-              <button style={styles.bookingButtonPrimary}>Book Appointment</button>
-              <button style={styles.bookingButtonSecondary}>Call Now</button>
-            </div>
+  <button
+    style={styles.bookingButtonPrimary}
+    onClick={() => (window.location.href = "/BookingPage")}
+  >
+    Book Appointment
+  </button>
+  <button style={styles.bookingButtonSecondary}>Call Now</button>
+</div>
+
           </div>
         </section>
       </div>
