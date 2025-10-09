@@ -1,635 +1,867 @@
-// src/pages/About.js
+import React, { useState, useRef } from 'react'; // useState को वापस लाना ज़रूरी है
+import Layout from '../components/HeaderFooter';
 
-import React, { useState, useEffect } from 'react';
-import HeaderFooter from '../components/HeaderFooter';
-
-// Premium Inline CSS styles
-const pageStyle = {
-  minHeight: '100vh',
-  fontFamily: "'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-  lineHeight: '1.6',
-  color: '#333',
-  background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+// Define the hover styles once outside the component
+const hoverStyles = {
+  // Styles for valueCard: transform: translateY(-10px) scale(1.02);
+  valueHover: { transform: 'translateY(-10px) scale(1.02)', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' },
+  // Styles for missionCard: transform: scale(1.03);
+  missionHover: { transform: 'scale(1.03)', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' },
+  // CTA pulse is handled by CSS animation, no inline hover needed unless we change the animation approach
 };
 
-const heroSectionStyle = {
-  background: 'linear-gradient(135deg, #0a2463 0%, #3e92cc 100%)',
-  color: 'white',
-  padding: '8em 2em 6em',
-  textAlign: 'center',
-  position: 'relative',
-  overflow: 'hidden',
-};
-
-const heroOverlayStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  background: 'rgba(10, 36, 99, 0.8)',
-};
-
-const heroContentStyle = {
-  position: 'relative',
-  zIndex: 2,
-  maxWidth: '1000px',
-  margin: '0 auto',
-};
-
-const mainHeadingStyle = {
-  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-  fontWeight: '800',
-  marginBottom: '1.5rem',
-  background: 'linear-gradient(to right, #ffffff, #c2e6ff)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  textTransform: 'uppercase',
-  letterSpacing: '2px',
-};
-
-const subHeadingStyle = {
-  fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
-  fontWeight: '300',
-  marginBottom: '2rem',
-  opacity: '0.9',
-  maxWidth: '800px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  lineHeight: '1.6',
-};
-
-const sectionStyle = {
-  padding: '6em 2em',
-  textAlign: 'center',
-  position: 'relative',
-};
-
-const contentSectionStyle = {
-  ...sectionStyle,
-  background: 'white',
-};
-
-const headingStyle = {
-  fontSize: 'clamp(2rem, 4vw, 3rem)',
-  marginBottom: '3rem',
-  color: '#0a2463',
-  fontWeight: '700',
-  position: 'relative',
-  display: 'inline-block',
-  textTransform: 'uppercase',
-  letterSpacing: '1px',
-};
-
-const underlineStyle = {
-  content: '""',
-  position: 'absolute',
-  width: '80px',
-  height: '5px',
-  background: 'linear-gradient(to right, #0a2463, #3e92cc)',
-  bottom: '-15px',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  borderRadius: '3px',
-};
-
-const paragraphStyle = {
-  fontSize: '1.15rem',
-  lineHeight: '1.9',
-  color: '#444',
-  marginBottom: '2rem',
-  textAlign: 'center',
-  maxWidth: '900px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-};
-
-const highlightTextStyle = {
-  color: '#0a2463',
-  fontWeight: '600',
-  background: 'linear-gradient(transparent 70%, rgba(62, 146, 204, 0.3) 70%)',
-  padding: '0 2px',
-};
-
-const missionVisionStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '4em',
-  flexWrap: 'wrap',
-  marginTop: '4em',
-};
-
-const missionVisionCardStyle = {
-  flex: '1',
-  minWidth: '300px',
-  maxWidth: '400px',
-  padding: '3em 2em',
-  background: 'white',
-  borderRadius: '20px',
-  boxShadow: '0 15px 40px rgba(10, 36, 99, 0.1)',
-  borderTop: '5px solid #0a2463',
-  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-  position: 'relative',
-  overflow: 'hidden',
-};
-
-const cardIconStyle = {
-  fontSize: '3.5rem',
-  color: '#0a2463',
-  marginBottom: '1.5rem',
-  transition: 'all 0.3s ease',
-};
-
-const teamSectionStyle = {
-  ...sectionStyle,
-  background: 'linear-gradient(135deg, #f0f7ff 0%, #e2e8f0 100%)',
-};
-
-const roleTabsStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  flexWrap: 'wrap',
-  gap: '1em',
-  marginBottom: '3em',
-};
-
-const tabButtonStyle = {
-  padding: '12px 24px',
-  backgroundColor: 'transparent',
-  color: '#0a2463',
-  border: '2px solid #0a2463',
-  borderRadius: '30px',
-  cursor: 'pointer',
-  fontWeight: '600',
-  transition: 'all 0.3s ease',
-  textTransform: 'uppercase',
-  letterSpacing: '0.5px',
-  fontSize: '0.9rem',
-};
-
-const activeTabStyle = {
-  ...tabButtonStyle,
-  backgroundColor: '#0a2463',
-  color: 'white',
-  boxShadow: '0 5px 15px rgba(10, 36, 99, 0.3)',
-};
-
-const teamGridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-  gap: '3em',
-  marginTop: '2em',
-  justifyContent: 'center',
-};
-
-const memberCardStyle = {
-  background: 'white',
-  padding: '2.5em 2em',
-  borderRadius: '20px',
-  boxShadow: '0 10px 30px rgba(10, 36, 99, 0.1)',
-  textAlign: 'center',
-  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-  borderTop: '4px solid #0a2463',
-  position: 'relative',
-  overflow: 'hidden',
-};
-
-const memberImageContainerStyle = {
-  width: '160px',
-  height: '160px',
-  borderRadius: '50%',
-  margin: '0 auto 1.5em',
-  border: '4px solid #0a2463',
-  padding: '4px',
-  background: 'white',
-  boxShadow: '0 5px 15px rgba(10, 36, 99, 0.2)',
-  transition: 'all 0.3s ease',
-};
-
-const memberImageStyle = {
-  width: '100%',
-  height: '100%',
-  borderRadius: '50%',
-  objectFit: 'cover',
-  transition: 'all 0.3s ease',
-};
-
-const memberNameStyle = {
-  fontSize: '1.4rem',
-  fontWeight: '700',
-  color: '#0a2463',
-  marginBottom: '0.5em',
-};
-
-const memberRoleStyle = {
-  color: '#3e92cc',
-  fontWeight: '600',
-  fontSize: '1rem',
-  textTransform: 'uppercase',
-  letterSpacing: '1px',
-  marginBottom: '1em',
-  padding: '5px 15px',
-  background: 'rgba(62, 146, 204, 0.1)',
-  borderRadius: '20px',
-  display: 'inline-block',
-};
-
-const statsContainerStyle = {
-  display: 'flex',
-  justifyContent: 'space-around',
-  flexWrap: 'wrap',
-  gap: '2em',
-  marginTop: '4em',
-  padding: '3em 2em',
-  background: 'white',
-  borderRadius: '20px',
-  boxShadow: '0 10px 30px rgba(10, 36, 99, 0.1)',
-};
-
-const statItemStyle = {
-  textAlign: 'center',
-  padding: '1em',
-  minWidth: '150px',
-};
-
-const statNumberStyle = {
-  fontSize: '3rem',
-  fontWeight: '800',
-  color: '#0a2463',
-  marginBottom: '0.5rem',
-  background: 'linear-gradient(to right, #0a2463, #3e92cc)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-};
-
-const statLabelStyle = {
-  fontSize: '1.1rem',
-  color: '#555',
-  fontWeight: '500',
-};
-
-const ctaSectionStyle = {
-  ...sectionStyle,
-  background: 'linear-gradient(135deg, #0a2463 0%, #3e92cc 100%)',
-  color: 'white',
-  padding: '6em 2em',
-};
-
-const ctaButtonStyle = {
-  padding: '15px 40px',
-  backgroundColor: 'white',
-  color: '#0a2463',
-  border: 'none',
-  borderRadius: '50px',
-  cursor: 'pointer',
-  fontWeight: '700',
-  transition: 'all 0.3s ease',
-  textTransform: 'uppercase',
-  letterSpacing: '1px',
-  fontSize: '1.1rem',
-  marginTop: '2em',
-  boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
-};
-
-// Animation keyframes
-const animationStyles = `
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+const AboutPage = () => {
+  // Use States to manage hover effects for safe styling
+  const [isMission1Hovered, setIsMission1Hovered] = useState(false);
+  const [isMission2Hovered, setIsMission2Hovered] = useState(false);
+  const [hoveredValueCard, setHoveredValueCard] = useState(null);
   
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
+  // Ref is not strictly needed anymore since we're using state for hovers, but keeping it as per your code structure
+  const mainContainerRef = useRef(null); 
+
+  // Keeping the functions defined by you, but they are generally unnecessary 
+  // if you're not doing logic based on the main container hover.
+  const onMouseLeave = () => {
+    if (mainContainerRef.current) {
+        // console.log('Main container mouse left');
     }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
+  };
   
-  @keyframes float {
-    0% {
-      transform: translateY(0);
+  const onMouseOver = () => {
+    if (mainContainerRef.current) {
+        // console.log('Main container mouse entered');
     }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-`;
-
-// Team data with more details
-const teamMembers = {
-  Faculty: [
-    { 
-      name: 'Dr. A. P. J. Abdul Kalam', 
-      role: 'Senior Faculty', 
-      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Cardiology Specialist with 20+ years of experience'
-    },
-    { 
-      name: 'Dr. C.V. Raman', 
-      role: 'Faculty Member', 
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Interventional Cardiology Expert'
-    },
-  ],
-  Adviser: [
-    { 
-      name: 'Dr. V. K. Singh', 
-      role: 'Chief Adviser', 
-      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Strategic Advisor with 30+ years in healthcare'
-    },
-  ],
-  Coordinator: [
-    { 
-      name: 'Ms. Surbhi Kumari', 
-      role: 'Program Coordinator', 
-      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Event Management and Coordination Specialist'
-    },
-  ],
-  'Office Bearer': [
-    { 
-      name: 'Mr. Rohan Sharma', 
-      role: 'Office Bearer', 
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Administrative and Operations Management'
-    },
-  ],
-  Members: [
-    { 
-      name: 'Priya Patel', 
-      role: 'Active Member', 
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Cardiovascular Technologist'
-    },
-    { 
-      name: 'Sameer Khan', 
-      role: 'Technical Member', 
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Medical Equipment Specialist'
-    },
-    { 
-      name: 'Anjali Gupta', 
-      role: 'Research Member', 
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-      description: 'Clinical Research Coordinator'
-    },
-  ],
-};
-
-const statsData = [
-  { number: '500+', label: 'Professional Members' },
-  { number: '25+', label: 'Years of Combined Experience' },
-  { number: '15+', label: 'Cities Covered' },
-  { number: '50+', label: 'Successful Events' },
-];
-
-function About() {
-  const [activeRole, setActiveRole] = useState('Faculty');
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const handleTabClick = (role) => {
-    setActiveRole(role);
-  };
-
-  const handleCardHover = (e) => {
-    e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)';
-    e.currentTarget.style.boxShadow = '0 20px 40px rgba(10, 36, 99, 0.2)';
-    
-    const image = e.currentTarget.querySelector('.member-image');
-    if (image) {
-      image.style.transform = 'scale(1.1)';
-    }
-    
-    const imageContainer = e.currentTarget.querySelector('.member-image-container');
-    if (imageContainer) {
-      imageContainer.style.transform = 'scale(1.05)';
-      imageContainer.style.borderColor = '#3e92cc';
-    }
-  };
-
-  const handleCardLeave = (e) => {
-    e.currentTarget.style.transform = 'translateY(0) scale(1)';
-    e.currentTarget.style.boxShadow = '0 10px 30px rgba(10, 36, 99, 0.1)';
-    
-    const image = e.currentTarget.querySelector('.member-image');
-    if (image) {
-      image.style.transform = 'scale(1)';
-    }
-    
-    const imageContainer = e.currentTarget.querySelector('.member-image-container');
-    if (imageContainer) {
-      imageContainer.style.transform = 'scale(1)';
-      imageContainer.style.borderColor = '#0a2463';
-    }
-  };
-
-  const handleMissionCardHover = (e) => {
-    e.currentTarget.style.transform = 'translateY(-5px)';
-    e.currentTarget.style.boxShadow = '0 20px 40px rgba(10, 36, 99, 0.15)';
-    
-    const icon = e.currentTarget.querySelector('.card-icon');
-    if (icon) {
-      icon.style.transform = 'scale(1.1)';
-      icon.style.animation = 'float 2s ease-in-out infinite';
-    }
-  };
-
-  const handleMissionCardLeave = (e) => {
-    e.currentTarget.style.transform = 'translateY(0)';
-    e.currentTarget.style.boxShadow = '0 15px 40px rgba(10, 36, 99, 0.1)';
-    
-    const icon = e.currentTarget.querySelector('.card-icon');
-    if (icon) {
-      icon.style.transform = 'scale(1)';
-      icon.style.animation = 'none';
-    }
-  };
-
-  const handleButtonHover = (e) => {
-    e.target.style.transform = 'translateY(-3px)';
-    e.target.style.boxShadow = '0 10px 20px rgba(0,0,0,0.3)';
-  };
-
-  const handleButtonLeave = (e) => {
-    e.target.style.transform = 'translateY(0)';
-    e.target.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
   };
 
   return (
-    <HeaderFooter>
-    <div style={pageStyle}>
-      <style>{animationStyles}</style>
-      
-      {/* Hero Section */}
-      <section style={heroSectionStyle}>
-        <div style={heroOverlayStyle}></div>
-        <div style={heroContentStyle}>
-          <h1 style={mainHeadingStyle}>About SNICT</h1>
-          <p style={subHeadingStyle}>
-            Society of Neo Interventional Cardiovascular Technologists - Pioneering excellence in cardiovascular care through innovation, education, and collaboration.
-          </p>
-        </div>
-      </section>
-
-      {/* About Content Section */}
-      <section style={contentSectionStyle}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 style={headingStyle}>
-            Our Story
-            <div style={underlineStyle}></div>
-          </h2>
-          <p style={paragraphStyle}>
-            <span style={highlightTextStyle}>SNICT Indian association</span> is primarily formed with an intention of learning and improving the knowledge of cardiovascular technologists in line with newer advances in the field of cardiology. It was founded in <span style={highlightTextStyle}>2025 by a group of cardiovascular technologists in Andhra Pradesh</span>.
-          </p>
-          <p style={paragraphStyle}>
-            The group was formed with an idea of educating technicians with newer treatment options. SNICT is formed to discuss complicated procedures/techniques and learning from our experiences. We also intend to conduct meetings/annual conferences with an intention of exchanging ideas and fostering professional growth.
-          </p>
-
-          {/* Mission & Vision Cards */}
-          <div style={missionVisionStyle}>
-            <div 
-              style={missionVisionCardStyle}
-              onMouseEnter={handleMissionCardHover}
-              onMouseLeave={handleMissionCardLeave}
-            >
-              <div style={cardIconStyle} className="card-icon">🎯</div>
-              <h3 style={{...headingStyle, fontSize: '1.8rem', marginBottom: '1.5rem'}}>Our Mission</h3>
-              <p style={paragraphStyle}>
-                To advance the field of cardiovascular interventions through innovation, education and collaboration, improving patient outcomes and quality of life.
-              </p>
-            </div>
-            <div 
-              style={missionVisionCardStyle}
-              onMouseEnter={handleMissionCardHover}
-              onMouseLeave={handleMissionCardLeave}
-            >
-              <div style={cardIconStyle} className="card-icon">👁️</div>
-              <h3 style={{...headingStyle, fontSize: '1.8rem', marginBottom: '1.5rem'}}>Our Vision</h3>
-              <p style={paragraphStyle}>
-                Transforming cardiovascular care through innovation, collaboration and excellence, personalized, compassionate and cutting-edge interventions.
+    <Layout>
+      <div 
+        style={styles.container}
+        ref={mainContainerRef}
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave} 
+      >
+        {/* HERO SECTION */}
+        <section style={styles.hero}>
+          <div style={styles.heroOverlay}></div>
+          <div style={styles.heroContent}>
+            <div style={styles.heroText}>
+              <h1 style={styles.heroTitle}>
+                About <span style={styles.highlight}>Cut Culture</span>
+              </h1>
+              <p style={styles.heroSubtitle}>
+                Where style meets community, and every cut tells a story of confidence and culture.
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Stats Section */}
-      <section style={sectionStyle}>
-        <div style={statsContainerStyle}>
-          {statsData.map((stat, index) => (
-            <div key={index} style={statItemStyle}>
-              <div style={statNumberStyle}>{stat.number}</div>
-              <div style={statLabelStyle}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section style={teamSectionStyle}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2 style={headingStyle}>
-            Meet Our Team
-            <div style={underlineStyle}></div>
-          </h2>
-          <p style={paragraphStyle}>
-            Our dedicated team of professionals is committed to advancing cardiovascular technology and education.
-          </p>
-
-          {/* Role Tabs */}
-          <div style={roleTabsStyle}>
-            {Object.keys(teamMembers).map((role) => (
-              <button
-                key={role}
-                style={activeRole === role ? activeTabStyle : tabButtonStyle}
-                onClick={() => handleTabClick(role)}
-                onMouseEnter={(e) => {
-                  if (activeRole !== role) {
-                    e.target.style.backgroundColor = '#0a2463';
-                    e.target.style.color = 'white';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeRole !== role) {
-                    e.target.style.backgroundColor = 'transparent';
-                    e.target.style.color = '#0a2463';
-                  }
-                }}
-              >
-                {role}
-              </button>
-            ))}
-          </div>
-
-          {/* Team Grid */}
-          <div style={teamGridStyle}>
-            {teamMembers[activeRole].map((member, index) => (
-              <div
-                key={index}
-                style={memberCardStyle}
-                onMouseEnter={handleCardHover}
-                onMouseLeave={handleCardLeave}
-              >
-                <div style={memberImageContainerStyle} className="member-image-container">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    style={memberImageStyle}
-                    className="member-image"
-                  />
+        {/* FOUNDER STORY SECTION */}
+        <section style={styles.storySection}>
+          <div style={styles.storyContent}>
+            <div className="story-image" style={styles.storyImage}>
+              <div style={{...styles.imageCard, backgroundImage: 'url(https://images.unsplash.com/photo-1536520002442-39764a41e987?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'}}>
+                <div style={styles.imageOverlay}></div>
+                <div style={styles.imageText}>
+                  <h3 style={styles.founderName}>Irvin Alcocer</h3>
+                  <p style={styles.founderTitle}>Founder & Master Barber</p>
                 </div>
-                <h4 style={memberNameStyle}>{member.name}</h4>
-                <p style={memberRoleStyle}>{member.role}</p>
-                <p style={{...paragraphStyle, fontSize: '0.95rem', marginBottom: '0'}}>
-                  {member.description}
-                </p>
               </div>
-            ))}
+            </div>
+            <div className="story-text" style={styles.storyText}>
+              <h2 style={styles.sectionTitle}>Our Story</h2>
+              <p style={styles.storyParagraph}>
+                Cut Culture was founded in 2025 by Irvin Alcocer, a passionate barber and entrepreneur from Long Beach, California. At just 23 years old, Irvin has already built a strong reputation for precision cuts and a personal touch.
+              </p>
+              <p style={styles.storyParagraph}>
+                A 2025 barber school graduate with two years of hands-on experience, Irvin discovered his love for cutting hair through building connections with clients. For him, barbering isn't just about the cut — it's about creating a space where people feel confident, respected, and part of a culture.
+              </p>
+              <p style={styles.storyParagraph}>
+                Cut Culture is more than a shop. It's a community built on style and culture.
+              </p>
+              <div style={styles.founderStats}>
+                <div style={styles.statItem}>
+                  <div style={styles.statNumber}>2+</div>
+                  <div style={styles.statLabel}>Years Experience</div>
+                </div>
+                <div style={styles.statItem}>
+                  <div style={styles.statNumber}>1000+</div>
+                  <div style={styles.statLabel}>Happy Clients</div>
+                </div>
+                <div style={styles.statItem}>
+                  <div style={styles.statNumber}>23</div>
+                  <div style={styles.statLabel}>Years Old</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section style={ctaSectionStyle}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{...headingStyle, color: 'white'}}>
-            Join Our Community
-            <div style={{...underlineStyle, background: 'linear-gradient(to right, #ffffff, #a0d0ff)'}}></div>
-          </h2>
-          <p style={{...paragraphStyle, color: 'white', fontSize: '1.2rem'}}>
-            Become part of SNICT and contribute to the advancement of cardiovascular technology and patient care.
-          </p>
-          <button 
-            style={ctaButtonStyle}
-            onMouseEnter={handleButtonHover}
-            onMouseLeave={handleButtonLeave}
-          >
-            Become a Member Today
-          </button>
-        </div>
-      </section>
-    </div>
-    </HeaderFooter>
+        {/* MISSION & VISION SECTION */}
+        <section style={styles.missionSection}>
+          <div style={styles.missionContent}>
+            <div style={styles.missionGrid}>
+              
+              {/* Mission Card 1 */}
+              <div 
+                className="mission-card" 
+                style={{
+                  ...styles.missionCard,
+                  ...(isMission1Hovered && hoverStyles.missionHover) // Apply hover style
+                }}
+                onMouseEnter={() => setIsMission1Hovered(true)} // Set state on hover
+                onMouseLeave={() => setIsMission1Hovered(false)} // Reset state on leave
+              >
+                <div style={{...styles.missionImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                  <div style={styles.missionOverlay}></div>
+                  <div style={styles.missionText}>
+                    <h3 style={styles.missionTitle}>Our Mission</h3>
+                    <p style={styles.missionDescription}>
+                      To transform haircuts into confidence-building experiences, where every client leaves feeling empowered and looking their absolute best.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Mission Card 2 */}
+              <div 
+                className="mission-card" 
+                style={{
+                  ...styles.missionCard,
+                  ...(isMission2Hovered && hoverStyles.missionHover) // Apply hover style
+                }}
+                onMouseEnter={() => setIsMission2Hovered(true)} // Set state on hover
+                onMouseLeave={() => setIsMission2Hovered(false)} // Reset state on leave
+              >
+                <div style={{...styles.missionImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                  <div style={styles.missionOverlay}></div>
+                  <div style={styles.missionText}>
+                    <h3 style={styles.missionTitle}>Our Vision</h3>
+                    <p style={styles.missionDescription}>
+                      To create a barbering culture that celebrates individuality, builds community, and sets new standards for excellence in grooming services.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* VALUES SECTION */}
+        <section style={styles.valuesSection}>
+          <div style={styles.sectionHeader}>
+            <h2 style={styles.sectionTitle}>Our Values</h2>
+            <p style={styles.sectionSubtitle}>The principles that guide everything we do</p>
+          </div>
+          
+          <div style={styles.valuesGrid}>
+            {/* Value Card 1 */}
+            <div 
+              className="value-card" 
+              style={{
+                ...styles.valueCard,
+                ...(hoveredValueCard === 'precision' && hoverStyles.valueHover) // Apply hover style
+              }}
+              onMouseEnter={() => setHoveredValueCard('precision')} // Set state on hover
+              onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
+            >
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                <div style={styles.valueOverlay}></div>
+                <div style={styles.valueContent}>
+                  <h3 style={styles.valueTitle}>Precision</h3>
+                  <p style={styles.valueDescription}>
+                    Every cut is executed with meticulous attention to detail and artistic vision.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Value Card 2 */}
+            <div 
+              className="value-card" 
+              style={{
+                ...styles.valueCard,
+                ...(hoveredValueCard === 'community' && hoverStyles.valueHover) // Apply hover style
+              }}
+              onMouseEnter={() => setHoveredValueCard('community')} // Set state on hover
+              onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
+            >
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1596728325488-58c87691e9af?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                <div style={styles.valueOverlay}></div>
+                <div style={styles.valueContent}>
+                  <h3 style={styles.valueTitle}>Community</h3>
+                  <p style={styles.valueDescription}>
+                    We build relationships that go beyond the chair, creating a space where everyone belongs.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Value Card 3 */}
+            <div 
+              className="value-card" 
+              style={{
+                ...styles.valueCard,
+                ...(hoveredValueCard === 'excellence' && hoverStyles.valueHover) // Apply hover style
+              }}
+              onMouseEnter={() => setHoveredValueCard('excellence')} // Set state on hover
+              onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
+            >
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1677444546739-21b8aad351d4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                <div style={styles.valueOverlay}></div>
+                <div style={styles.valueContent}>
+                  <h3 style={styles.valueTitle}>Excellence</h3>
+                  <p style={styles.valueDescription}>
+                    We never settle for good enough, always striving for perfection in every service.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Value Card 4 */}
+            <div 
+              className="value-card" 
+              style={{
+                ...styles.valueCard,
+                ...(hoveredValueCard === 'innovation' && hoverStyles.valueHover) // Apply hover style
+              }}
+              onMouseEnter={() => setHoveredValueCard('innovation')} // Set state on hover
+              onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
+            >
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1598524374912-6b0b0bab43dd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                <div style={styles.valueOverlay}></div>
+                <div style={styles.valueContent}>
+                  <h3 style={styles.valueTitle}>Innovation</h3>
+                  <p style={styles.valueDescription}>
+                    We stay ahead of trends while respecting the timeless art of traditional barbering.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CULTURE SECTION */}
+        <section style={styles.cultureSection}>
+          <div style={styles.cultureContent}>
+            <div className="culture-text" style={styles.cultureText}>
+              <h2 style={styles.sectionTitle}>The Cut Culture Experience</h2>
+              <div style={styles.cultureFeatures}>
+                <div className="culture-feature" style={styles.cultureFeature}>
+                  
+                  <div>
+                    <h4 style={styles.featureTitle}>Personalized Consultations</h4>
+                    <p style={styles.featureDescription}>
+                      Every service begins with a detailed consultation to understand your style and preferences.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="culture-feature" style={styles.cultureFeature}>
+              
+                  <div>
+                    <h4 style={styles.featureTitle}>Premium Products</h4>
+                    <p style={styles.featureDescription}>
+                      We use only the highest quality grooming products to ensure exceptional results.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="culture-feature" style={styles.cultureFeature}>
+                
+                  <div>
+                    <h4 style={styles.featureTitle}>Master Craftsmanship</h4>
+                    <p style={styles.featureDescription}>
+                      Our barbers are trained in both classic techniques and modern trends.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="culture-feature" style={styles.cultureFeature}>
+              
+                  <div>
+                    <h4 style={styles.featureTitle}>Community Focus</h4>
+                    <p style={styles.featureDescription}>
+                      We're more than a barbershop - we're a gathering place for the community.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="culture-image" style={styles.cultureImage}>
+              <div style={{...styles.cultureImageCard, backgroundImage: 'url(https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                <div style={styles.cultureImageOverlay}></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA SECTION */}
+        <section style={styles.ctaSection}>
+          <div style={styles.ctaBackground}></div>
+          <div style={styles.ctaContent}>
+            <h2 style={styles.ctaTitle}>
+              Experience the Culture
+            </h2>
+            <p style={styles.ctaText}>
+              Ready to join the Cut Culture family? Book your appointment and discover why we're more than just a barbershop.
+            </p>
+            <div style={styles.ctaButtons}>
+              {/* CTA Button - Pulse animation remains in CSS, safe to use */}
+              <button className="cta-primary-button" style={styles.ctaPrimaryButton}>Book Your Cut</button>
+              <button style={styles.ctaSecondaryButton}>Visit Our Shop</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* Add CSS Animations - Hover styles removed from here to fix the error */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        .story-image {
+          animation: slideInLeft 1s ease-out;
+        }
+
+        .story-text {
+          animation: slideInRight 1s ease-out;
+        }
+
+        .mission-card {
+          animation: fadeInUp 0.8s ease-out;
+        }
+
+        .value-card {
+          animation: fadeInUp 0.6s ease-out;
+        }
+
+        .culture-feature {
+          animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* HOVER STYLES REMOVED FROM HERE TO FIX THE NULL ERROR: */
+        /* .value-card:hover, .mission-card:hover, .cta-primary-button:hover rules removed */
+        
+        .cta-primary-button:hover {
+          animation: pulse 0.5s ease-in-out;
+        }
+      `}</style>
+    </Layout>
   );
-}
+};
 
-export default About;
+// Professional Styles with Animations (Same as before)
+const styles = {
+  // ... (All existing styles are placed here) ...
+  container: {
+    width: '100%',
+    overflow: 'hidden'
+  },
+  // HERO SECTION
+  hero: {
+    minHeight: '60vh',
+    backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    position: 'relative',
+    padding: '4rem 0'
+  },
+  
+  heroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(212,175,55,0.2) 100%)',
+    zIndex: 1
+  },
+  
+  heroContent: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem',
+    textAlign: 'center',
+    position: 'relative',
+    zIndex: 2
+  },
+  
+  heroText: {
+    color: 'white'
+  },
+  
+  heroTitle: {
+    fontSize: '3.5rem',
+    fontWeight: 'bold',
+    marginBottom: '1.5rem',
+    lineHeight: '1.2',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+  },
+  
+  highlight: {
+    color: '#D4AF37',
+    background: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    textShadow: 'none'
+  },
+  
+  heroSubtitle: {
+    fontSize: '1.3rem',
+    lineHeight: '1.6',
+    color: '#FFFFFF',
+    maxWidth: '600px',
+    margin: '0 auto',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+  },
+
+  // STORY SECTION
+  storySection: {
+    padding: '6rem 0',
+    backgroundColor: '#ffffff'
+  },
+  
+  storyContent: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '4rem',
+    alignItems: 'center'
+  },
+  
+  storyImage: {
+    animation: 'slideInLeft 1s ease-out'
+  },
+  
+  imageCard: {
+    height: '500px',
+    borderRadius: '12px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    overflow: 'hidden',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+  },
+  
+  imageOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.3) 50%, transparent 100%)',
+    zIndex: 1
+  },
+  
+  imageText: {
+    position: 'absolute',
+    bottom: '2rem',
+    left: '2rem',
+    zIndex: 2,
+    color: 'white'
+  },
+  
+  founderName: {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '0.5rem'
+  },
+  
+  founderTitle: {
+    fontSize: '1.1rem',
+    color: '#FFFFFF',
+    opacity: 0.9
+  },
+  
+  storyText: {
+    animation: 'slideInRight 1s ease-out'
+  },
+  
+  sectionTitle: {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: '2rem'
+  },
+  
+  storyParagraph: {
+    fontSize: '1.1rem',
+    lineHeight: '1.8',
+    color: '#666',
+    marginBottom: '1.5rem'
+  },
+  
+  founderStats: {
+    display: 'flex',
+    gap: '2rem',
+    marginTop: '2rem'
+  },
+  
+  statItem: {
+    textAlign: 'center'
+  },
+  
+  statNumber: {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '0.5rem'
+  },
+  
+  statLabel: {
+    fontSize: '0.9rem',
+    color: '#666',
+    fontWeight: '500'
+  },
+
+  // MISSION SECTION
+  missionSection: {
+    padding: '6rem 0',
+    backgroundColor: '#f8f9fa'
+  },
+  
+  missionContent: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem'
+  },
+  
+  missionGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
+    gap: '2rem'
+  },
+  
+  missionCard: {
+    borderRadius: '12px',
+    overflow: 'hidden',
+    boxShadow: '0 15px 35px rgba(0,0,0,0.1)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    animation: 'fadeInUp 0.8s ease-out',
+    height: '300px'
+  },
+  
+  missionImage: {
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'flex-end'
+  },
+  
+  missionOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.4) 50%, transparent 100%)',
+    zIndex: 1
+  },
+  
+  missionText: {
+    position: 'relative',
+    zIndex: 2,
+    padding: '2rem',
+    color: 'white'
+  },
+  
+  missionTitle: {
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '1rem'
+  },
+  
+  missionDescription: {
+    fontSize: '1.1rem',
+    lineHeight: '1.6',
+    color: '#FFFFFF'
+  },
+
+  // VALUES SECTION
+  valuesSection: {
+    padding: '6rem 0',
+    backgroundColor: '#ffffff'
+  },
+  
+  sectionHeader: {
+    textAlign: 'center',
+    marginBottom: '4rem',
+    maxWidth: '800px',
+    margin: '0 auto 4rem auto',
+    padding: '0 2rem'
+  },
+  
+  sectionSubtitle: {
+    fontSize: '1.1rem',
+    color: '#666',
+    lineHeight: '1.6'
+  },
+  
+  valuesGrid: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '2rem'
+  },
+  
+  valueCard: {
+    borderRadius: '12px',
+    overflow: 'hidden',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    animation: 'fadeInUp 0.6s ease-out',
+    height: '250px'
+  },
+  
+  valueImage: {
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'flex-end'
+  },
+  
+  valueOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.3) 50%, transparent 100%)',
+    zIndex: 1
+  },
+  
+  valueContent: {
+    position: 'relative',
+    zIndex: 2,
+    padding: '1.5rem',
+    color: 'white'
+  },
+  
+  valueTitle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '0.5rem'
+  },
+  
+  valueDescription: {
+    fontSize: '0.95rem',
+    lineHeight: '1.6',
+    color: '#FFFFFF'
+  },
+
+  // CULTURE SECTION
+  cultureSection: {
+    padding: '6rem 0',
+    backgroundColor: '#f8f9fa'
+  },
+  
+  cultureContent: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '4rem',
+    alignItems: 'center'
+  },
+  
+  cultureText: {
+    animation: 'slideInLeft 1s ease-out'
+  },
+  
+  cultureFeatures: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2rem'
+  },
+  
+  cultureFeature: {
+    display: 'flex',
+    gap: '1rem',
+    animation: 'fadeInUp 0.8s ease-out'
+  },
+  
+  featureIcon: {
+    fontSize: '2rem',
+    flexShrink: 0
+  },
+  
+  featureTitle: {
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: '0.5rem'
+  },
+  
+  featureDescription: {
+    fontSize: '1rem',
+    color: '#666',
+    lineHeight: '1.6'
+  },
+  
+  cultureImage: {
+    animation: 'slideInRight 1s ease-out'
+  },
+  
+  cultureImageCard: {
+    height: '500px',
+    borderRadius: '12px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+  },
+  
+  cultureImageOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(45deg, rgba(212,175,55,0.1) 0%, rgba(26,26,26,0.1) 100%)',
+    borderRadius: '12px'
+  },
+
+  // CTA SECTION
+  ctaSection: {
+    padding: '5rem 0',
+    backgroundColor: '#1a1a1a',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  
+  ctaBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: 'url(https://images.unsplash.com/photo-1593705114312-a0ee03a3f7d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    opacity: '0.2',
+    zIndex: 1
+  },
+  
+  ctaContent: {
+    maxWidth: '800px',
+    margin: '0 auto',
+    textAlign: 'center',
+    padding: '0 2rem',
+    position: 'relative',
+    zIndex: 2
+  },
+  
+  ctaTitle: {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: '1.5rem',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+  },
+  
+  ctaText: {
+    fontSize: '1.2rem',
+    color: '#CCCCCC',
+    lineHeight: '1.6',
+    marginBottom: '2.5rem',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+  },
+  
+  ctaButtons: {
+    display: 'flex',
+    gap: '1rem',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
+  },
+  
+  ctaPrimaryButton: {
+    backgroundColor: '#D4AF37',
+    color: '#1a1a1a',
+    border: 'none',
+    padding: '1.2rem 2.5rem',
+    borderRadius: '8px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
+    animation: 'pulse 2s infinite'
+  },
+  
+  ctaSecondaryButton: {
+    backgroundColor: 'transparent',
+    color: '#D4AF37',
+    border: '2px solid #D4AF37',
+    padding: '1.2rem 2.5rem',
+    borderRadius: '8px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    backdropFilter: 'blur(10px)'
+  }
+};
+
+
+export default AboutPage;

@@ -1,44 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faFacebookF, 
-  faTwitter, 
-  faInstagram, 
-  faLinkedinIn,
-  faYoutube
-} from '@fortawesome/free-brands-svg-icons';
+import logo from '../assets/images/logo.png';
+
 
 // --- Inline CSS for the Layout Wrapper ---
 const layoutStyle = {
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+  fontFamily: "'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
 };
 
 // --- Inline CSS for Header ---
 const headerStyle = {
-  backgroundColor: 'rgba(255, 255, 255, 0.97)',
+  backgroundColor: 'rgba(26, 26, 26, 0.97)',
   backdropFilter: 'blur(10px)',
   padding: '1.2em 0',
-  color: '#004d40',
+  color: '#FFFFFF',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  boxShadow: '0 4px 30px rgba(0, 77, 64, 0.08)',
+  boxShadow: '0 4px 30px rgba(212, 175, 55, 0.08)',
   position: 'sticky',
   top: '0',
   zIndex: '1000',
   transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1)',
   width: '100%',
-  borderBottom: '1px solid rgba(0, 150, 136, 0.1)',
+  borderBottom: '1px solid rgba(212, 175, 55, 0.1)',
 };
 
 const headerScrolledStyle = {
   padding: '0.8em 0',
-  boxShadow: '0 2px 20px rgba(0, 0, 0, 0.05)',
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
+  boxShadow: '0 2px 20px rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'rgba(26, 26, 26, 0.98)',
 };
 
 const headerContainerStyle = {
@@ -46,14 +40,14 @@ const headerContainerStyle = {
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '90%',
-  maxWidth: '1200px',
+  maxWidth: '1400px',
 };
 
 const logoStyle = {
   fontSize: '2.2em',
   fontWeight: '900',
   letterSpacing: '1.5px',
-  background: 'linear-gradient(135deg, #00796b 0%, #004d40 100%)',
+  background: 'linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
@@ -67,7 +61,7 @@ const logoStyle = {
 
 const logoIconStyle = {
   fontSize: '1.2em',
-  background: 'linear-gradient(135deg, #00796b 0%, #004d40 100%)',
+  background: 'linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
@@ -80,7 +74,7 @@ const navStyle = {
 };
 
 const linkStyle = {
-  color: '#555',
+  color: '#CCCCCC',
   textDecoration: 'none',
   fontSize: '1.05em',
   fontWeight: '600',
@@ -91,7 +85,7 @@ const linkStyle = {
 };
 
 const activeLinkStyle = {
-  color: '#00796b',
+  color: '#D4AF37',
   fontWeight: '700',
 };
 
@@ -100,7 +94,7 @@ const mobileMenuButtonStyle = {
   background: 'none',
   border: 'none',
   fontSize: '1.8em',
-  color: '#00796b',
+  color: '#D4AF37',
   cursor: 'pointer',
   transition: 'transform 0.3s ease',
   padding: '5px',
@@ -111,10 +105,10 @@ const mobileNavStyle = {
   display: 'none',
   flexDirection: 'column',
   width: '100%',
-  backgroundColor: 'rgba(255, 255, 255, 0.98)',
+  backgroundColor: 'rgba(26, 26, 26, 0.98)',
   backdropFilter: 'blur(10px)',
   padding: '1em 0',
-  boxShadow: '0 5px 25px rgba(0, 0, 0, 0.08)',
+  boxShadow: '0 5px 25px rgba(0, 0, 0, 0.2)',
   position: 'absolute',
   top: '100%',
   left: '0',
@@ -124,7 +118,7 @@ const mobileNavStyle = {
 const mobileLinkStyle = {
   ...linkStyle,
   padding: '1.2em 2em',
-  borderBottom: '1px solid rgba(0, 150, 136, 0.1)',
+  borderBottom: '1px solid rgba(212, 175, 55, 0.1)',
   width: '100%',
   textAlign: 'left',
   transition: 'all 0.2s ease',
@@ -132,9 +126,9 @@ const mobileLinkStyle = {
 
 // --- Inline CSS for Footer ---
 const footerStyle = {
-  background: 'linear-gradient(135deg, #004d40 0%, #00695c 100%)',
+  background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
   padding: '4em 2em 2em',
-  color: '#e0f7fa',
+  color: '#CCCCCC',
   width: '100%',
   marginTop: 'auto',
   position: 'relative',
@@ -142,7 +136,7 @@ const footerStyle = {
 };
 
 const footerContainerStyle = {
-  maxWidth: '1200px',
+  maxWidth: '1400px',
   margin: '0 auto',
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -160,7 +154,7 @@ const footerHeadingStyle = {
   fontSize: '1.3em',
   fontWeight: '700',
   marginBottom: '1.2em',
-  color: '#e0f7fa',
+  color: '#D4AF37',
   position: 'relative',
   paddingBottom: '10px',
 };
@@ -171,12 +165,12 @@ const footerHeadingUnderlineStyle = {
   left: '0',
   width: '40px',
   height: '3px',
-  backgroundColor: '#4db6ac',
+  backgroundColor: '#D4AF37',
   borderRadius: '2px',
 };
 
 const footerLinkStyle = {
-  color: '#b2dfdb',
+  color: '#999999',
   textDecoration: 'none',
   display: 'block',
   marginBottom: '0.8em',
@@ -192,7 +186,7 @@ const socialIconsStyle = {
 };
 
 const socialIconStyle = {
-  color: '#fff',
+  color: '#D4AF37',
   fontSize: '1.3em',
   transition: 'all 0.3s ease',
   textDecoration: 'none',
@@ -202,15 +196,16 @@ const socialIconStyle = {
   width: '40px',
   height: '40px',
   borderRadius: '50%',
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  backgroundColor: 'rgba(212, 175, 55, 0.1)',
   backdropFilter: 'blur(5px)',
+  border: '1px solid rgba(212, 175, 55, 0.2)',
 };
 
 const copyrightStyle = {
   marginTop: '3em',
   paddingTop: '2em',
-  borderTop: '1px solid rgba(77, 182, 172, 0.3)',
-  color: '#b2dfdb',
+  borderTop: '1px solid rgba(212, 175, 55, 0.3)',
+  color: '#999999',
   fontSize: '0.9em',
   textAlign: 'center',
   position: 'relative',
@@ -224,7 +219,7 @@ const footerPatternStyle = {
   width: '100%',
   height: '100%',
   opacity: '0.03',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23D4AF37' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
   zIndex: '1',
 };
 
@@ -250,6 +245,10 @@ const keyframesAndMediaStyle = `
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
   }
   @media (max-width: 900px) {
     .desktop-nav {
@@ -286,10 +285,9 @@ function Layout({ children }) {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/About", label: "About" },
-    { href: "/Committees", label: "Committees" },
-    { href: "/events", label: "Events" },
-    { href: "/registration", label: "Registration" },
+    { href: "/About", label: "About Us" },
+    { href: "/ServicesPage", label: "Services" },
+    { href: "/BookingPage", label: "Book Now" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -297,28 +295,27 @@ function Layout({ children }) {
     "Quick Links": [
       { href: "/", label: "Home" },
       { href: "/About", label: "About Us" },
-      { href: "/events", label: "Events" },
-      { href: "/registration", label: "Membership" },
+      { href: "/ServicesPage", label: "Services" },
+      { href: "/BookingPage", label: "Book Appointment" },
     ],
-    "Resources": [
-      { href: "/Committees", label: "Committees" },
-      { href: "/gallery", label: "Gallery" },
-      { href: "/news", label: "News & Updates" },
-      { href: "/publications", label: "Publications" },
+    "Our Services": [
+      { href: "#haircut", label: "Professional Haircuts" },
+      { href: "#beard", label: "Beard Trims" },
+      { href: "#lineup", label: "Signature Line-Ups" },
+      { href: "#addons", label: "Premium Add-Ons" },
     ],
-    "Contact": [
-      { label: "Email: info@snict.org" },
-      { label: "Phone: +91-XXX-XXXX-XXX" },
-      { label: "Address: Hyderabad, India" },
+    "Contact Info": [
+      { label: "Phone:  (913) 313-0064" },
+      { label: "Email: cutculturekc@gmail.com" },
+      { label: "Location: Kansas City, KS" },
+      { label: "Hours: Mon-Sat 9AM-7PM" },
     ]
   };
 
   const socialLinks = [
-    { icon: faFacebookF, label: "Facebook", color: "#3b5998" },
-    { icon: faTwitter, label: "Twitter", color: "#1da1f2" },
-    { icon: faInstagram, label: "Instagram", color: "#e1306c" },
-    { icon: faLinkedinIn, label: "LinkedIn", color: "#0077b5" },
-    { icon: faYoutube, label: "YouTube", color: "#ff0000" },
+    { icon: "", label: "Facebook", color: "#D4AF37" },
+    { icon: "", label: "Instagram", color: "#D4AF37" },
+    { icon: "", label: "Twitter", color: "#D4AF37" },
   ];
 
   return (
@@ -327,95 +324,78 @@ function Layout({ children }) {
       
       {/* --- Header Section --- */}
       <header style={{
-        ...headerStyle,
-        ...(isScrolled ? headerScrolledStyle : {})
-      }}>
-        <div style={headerContainerStyle}>
-          <a href="/" style={logoStyle}>
-            <span style={logoIconStyle}></span>
-            SNICT
-          </a>
-          
-          {/* Desktop Navigation */}
-          <nav style={navStyle} className="desktop-nav">
-            {navLinks.map((link, index) => (
-              <a 
-                key={index}
-                href={link.href}
-                style={{
-                  ...linkStyle,
-                  ...(location.pathname === link.href ? activeLinkStyle : {})
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = '#00796b';
-                  e.target.querySelector('span').style.transform = 'scaleX(1)';
-                }}
-                onMouseLeave={(e) => {
-                  if (location.pathname !== link.href) {
-                    e.target.style.color = '#555';
-                  }
-                  e.target.querySelector('span').style.transform = location.pathname === link.href ? 'scaleX(1)' : 'scaleX(0)';
-                }}
-              >
-                {link.label}
-                <span style={{
-                  position: 'absolute',
-                  bottom: '0',
-                  left: '0',
-                  width: '100%',
-                  height: '3px',
-                  backgroundColor: '#00796b',
-                  transform: location.pathname === link.href ? 'scaleX(1)' : 'scaleX(0)',
-                  transformOrigin: 'left',
-                  transition: 'transform 0.3s ease',
-                  borderRadius: '2px',
-                }}></span>
-              </a>
-            ))}
-          </nav>
-          
-          {/* Mobile Menu Button */}
-          <button 
-            style={{
-              ...mobileMenuButtonStyle,
-              transform: isMobileMenuOpen ? 'rotate(90deg)' : 'rotate(0)'
-            }}
-            className="mobile-menu-button"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? '✕' : '☰'}
-          </button>
-        </div>
-        
-        {/* Mobile Navigation */}
-        <nav style={{
-          ...mobileNavStyle,
-          ...(isMobileMenuOpen ? { display: 'flex' } : {})
-        }} className={isMobileMenuOpen ? "mobile-nav-open" : ""}>
-          {navLinks.map((link, index) => (
-            <a 
-              key={index}
-              href={link.href}
-              style={{
-                ...mobileLinkStyle,
-                ...(location.pathname === link.href ? activeLinkStyle : {})
-              }}
-              onClick={() => setIsMobileMenuOpen(false)}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = 'rgba(0, 150, 136, 0.05)';
-                e.target.style.paddingLeft = '2.5em';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'transparent';
-                e.target.style.paddingLeft = '2em';
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      </header>
+  ...headerStyle,
+  ...(isScrolled ? headerScrolledStyle : {})
+}}>
+  <div style={headerContainerStyle}>
+    <a href="/" style={logoStyle}>
+      <img 
+        src={logo}
+        alt="Cut Culture Logo"
+        style={{
+          height: '50px',
+          width: 'auto',
+          marginRight: '10px',
+          verticalAlign: 'middle',
+          borderRadius: '8px'
+        }}
+      />
+    </a>
+
+    {/* Desktop Navigation */}
+    <nav style={navStyle} className="desktop-nav">
+      {navLinks.map((link, index) => (
+        <a 
+          key={index}
+          href={link.href}
+          style={{
+            ...linkStyle,
+            ...(location.pathname === link.href ? activeLinkStyle : {})
+          }}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    {/* Mobile Menu Button */}
+    <button 
+      style={{
+        ...mobileMenuButtonStyle,
+        transform: isMobileMenuOpen ? 'rotate(90deg)' : 'rotate(0)'
+      }}
+      className="mobile-menu-button"
+      onClick={toggleMobileMenu}
+      aria-label="Toggle menu"
+    >
+      {isMobileMenuOpen ? '✕' : '☰'}
+    </button>
+  </div>
+
+  {/* Mobile Navigation */}
+  <nav
+    style={{
+      ...mobileNavStyle,
+      ...(isMobileMenuOpen ? { display: 'flex' } : {})
+    }}
+    className={isMobileMenuOpen ? 'mobile-nav-open' : ''}
+  >
+    {navLinks.map((link, index) => (
+      <a 
+        key={index}
+        href={link.href}
+        style={{
+          ...mobileLinkStyle,
+          ...(location.pathname === link.href ? activeLinkStyle : {})
+        }}
+        onClick={() => setIsMobileMenuOpen(false)}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</header>   
+
       
       {/* --- Main Content Section (Where other pages will be rendered) --- */}
       <main style={{
@@ -432,12 +412,12 @@ function Layout({ children }) {
         <div style={footerContainerStyle} className="footer-container">
           <div style={footerSectionStyle}>
             <h3 style={footerHeadingStyle}>
-              SNICT
+              CUT CULTURE
               <span style={footerHeadingUnderlineStyle}></span>
             </h3>
-            <p style={{color: '#b2dfdb', lineHeight: '1.6', marginBottom: '1.5em'}}>
-              Society of Neo Interventional Cardiovascular Technologists. 
-              Advancing cardiovascular care through innovation, collaboration and excellence.
+            <p style={{color: '#999999', lineHeight: '1.6', marginBottom: '1.5em'}}>
+              Premium barber services where precision meets style. We don't just give haircuts, 
+              we create confidence with clean fades, sharp lines, and timeless looks tailored to you.
             </p>
             <div style={socialIconsStyle}>
               {socialLinks.map((social, index) => (
@@ -446,19 +426,21 @@ function Layout({ children }) {
                   href="#" 
                   style={{
                     ...socialIconStyle,
-                    backgroundColor: `rgba(${parseInt(social.color.slice(1,3), 16)}, ${parseInt(social.color.slice(3,5), 16)}, ${parseInt(social.color.slice(5,7), 16)}, 0.2)`
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)'
                   }}
                   onMouseEnter={(e) => { 
                     e.target.style.transform = 'translateY(-5px)';
-                    e.target.style.backgroundColor = `rgba(${parseInt(social.color.slice(1,3), 16)}, ${parseInt(social.color.slice(3,5), 16)}, ${parseInt(social.color.slice(5,7), 16)}, 0.4)`;
+                    e.target.style.backgroundColor = 'rgba(212, 175, 55, 0.2)';
+                    e.target.style.animation = 'glow 2s infinite';
                   }}
                   onMouseLeave={(e) => { 
                     e.target.style.transform = 'translateY(0)';
-                    e.target.style.backgroundColor = `rgba(${parseInt(social.color.slice(1,3), 16)}, ${parseInt(social.color.slice(3,5), 16)}, ${parseInt(social.color.slice(5,7), 16)}, 0.2)`;
+                    e.target.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                    e.target.style.animation = 'none';
                   }}
                   aria-label={social.label}
                 >
-                  <FontAwesomeIcon icon={social.icon} />
+                  {social.icon}
                 </a>
               ))}
             </div>
@@ -476,14 +458,16 @@ function Layout({ children }) {
                   href={link.href || '#'}
                   style={footerLinkStyle}
                   onMouseEnter={(e) => { 
-                    e.target.style.color = '#fff'; 
+                    e.target.style.color = '#D4AF37'; 
                     e.target.style.paddingLeft = '8px'; 
-                    e.target.style.borderLeft = '3px solid #4db6ac';
+                    e.target.style.borderLeft = '3px solid #D4AF37';
+                    e.target.style.transform = 'translateX(5px)';
                   }}
                   onMouseLeave={(e) => { 
-                    e.target.style.color = '#b2dfdb'; 
+                    e.target.style.color = '#999999'; 
                     e.target.style.paddingLeft = '0'; 
                     e.target.style.borderLeft = '3px solid transparent';
+                    e.target.style.transform = 'translateX(0)';
                   }}
                 >
                   {link.label}
@@ -494,7 +478,7 @@ function Layout({ children }) {
         </div>
         
         <div style={copyrightStyle}>
-          <p>&copy; {new Date().getFullYear()} SNICT. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Cut Culture. All Rights Reserved. | Premium Barber Services</p>
         </div>
       </footer>
     </div>

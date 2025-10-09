@@ -1,594 +1,1012 @@
-// src/pages/Contact.js
-
 import React, { useState } from 'react';
-import HeaderFooter from '../components/HeaderFooter';
+import Layout from '../components/HeaderFooter';
 
-// Premium Inline CSS styles
-const pageStyle = {
-  minHeight: '100vh',
-  fontFamily: "'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-  lineHeight: '1.6',
-  color: '#2d3748',
-  background: 'linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)',
-};
-
-const heroSectionStyle = {
-  background: 'linear-gradient(135deg, #004d40 0%, #00796b 100%)',
-  color: 'white',
-  padding: '8em 2em 6em',
-  textAlign: 'center',
-  position: 'relative',
-  overflow: 'hidden',
-  clipPath: 'polygon(0 0, 100% 0, 100% 85%, 0 100%)',
-};
-
-const heroPatternStyle = {
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  opacity: '0.1',
-  backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-};
-
-const heroContentStyle = {
-  position: 'relative',
-  zIndex: 2,
-  maxWidth: '1000px',
-  margin: '0 auto',
-};
-
-const mainHeadingStyle = {
-  fontSize: 'clamp(2.8rem, 5vw, 4rem)',
-  fontWeight: '800',
-  marginBottom: '1.5rem',
-  background: 'linear-gradient(to right, #ffffff, #b2dfdb)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
-  letterSpacing: '-0.5px',
-  lineHeight: '1.2',
-};
-
-const subHeadingStyle = {
-  fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)',
-  fontWeight: '300',
-  marginBottom: '3rem',
-  opacity: '0.95',
-  maxWidth: '700px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  lineHeight: '1.6',
-};
-
-const sectionStyle = {
-  padding: '6em 2em',
-  textAlign: 'center',
-  position: 'relative',
-};
-
-const contactDetailsStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-  gap: '3em',
-  margin: '4em 0',
-  maxWidth: '1300px',
-  marginLeft: 'auto',
-  marginRight: 'auto',
-};
-
-const detailItemStyle = {
-  background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-  padding: '3em 2.5em',
-  borderRadius: '24px',
-  boxShadow: '0 20px 50px rgba(0, 77, 64, 0.08)',
-  textAlign: 'center',
-  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-  border: '1px solid rgba(0, 150, 136, 0.1)',
-  position: 'relative',
-  overflow: 'hidden',
-  cursor: 'pointer',
-};
-
-const detailItemHoverStyle = {
-  ...detailItemStyle,
-  transform: 'translateY(-12px) scale(1.02)',
-  boxShadow: '0 30px 60px rgba(0, 77, 64, 0.15)',
-  borderColor: 'rgba(0, 150, 136, 0.3)',
-};
-
-const detailIconContainerStyle = {
-  width: '80px',
-  height: '80px',
-  borderRadius: '50%',
-  background: 'linear-gradient(135deg, #00796b 0%, #004d40 100%)',
-  margin: '0 auto 2em',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transition: 'all 0.3s ease',
-};
-
-const detailIconStyle = {
-  fontSize: '2.5rem',
-  color: 'white',
-  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))',
-};
-
-const detailTitleStyle = {
-  fontSize: '1.5rem',
-  fontWeight: '700',
-  color: '#004d40',
-  marginBottom: '1.5rem',
-  letterSpacing: '-0.5px',
-};
-
-const detailTextStyle = {
-  fontSize: '1.1rem',
-  color: '#4a5568',
-  lineHeight: '1.7',
-  marginBottom: '1rem',
-};
-
-const detailLinkStyle = {
-  color: '#00796b',
-  textDecoration: 'none',
-  fontWeight: '600',
-  fontSize: '1rem',
-  transition: 'all 0.3s ease',
-  display: 'inline-block',
-  marginTop: '1em',
-  padding: '0.8em 1.5em',
-  borderRadius: '25px',
-  background: 'rgba(0, 150, 136, 0.1)',
-};
-
-const formContainerStyle = {
-  background: 'linear-gradient(135deg, #ffffff 0%, #f7fafc 100%)',
-  padding: '4em',
-  borderRadius: '24px',
-  boxShadow: '0 20px 50px rgba(0, 77, 64, 0.08)',
-  maxWidth: '900px',
-  margin: '4em auto',
-  border: '1px solid rgba(0, 150, 136, 0.1)',
-  position: 'relative',
-  overflow: 'hidden',
-};
-
-const formPatternStyle = {
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  width: '200px',
-  height: '200px',
-  background: 'radial-gradient(circle, rgba(0, 150, 136, 0.05) 0%, transparent 70%)',
-};
-
-const formTitleStyle = {
-  fontSize: '2.5rem',
-  fontWeight: '700',
-  color: '#004d40',
-  marginBottom: '2em',
-  textAlign: 'center',
-  letterSpacing: '-0.5px',
-  position: 'relative',
-};
-
-const underlineStyle = {
-  content: '""',
-  position: 'absolute',
-  width: '80px',
-  height: '4px',
-  background: 'linear-gradient(to right, #00796b, #004d40)',
-  bottom: '-15px',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  borderRadius: '2px',
-};
-
-const formGridStyle = {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gap: '2.5em',
-};
-
-const formGroupStyle = {
-  marginBottom: '2.5em',
-  width: '100%',
-  textAlign: 'left',
-  position: 'relative',
-};
-
-const fullWidthGroupStyle = {
-  ...formGroupStyle,
-  gridColumn: '1 / -1',
-};
-
-const labelStyle = {
-  display: 'block',
-  marginBottom: '1em',
-  fontWeight: '600',
-  color: '#004d40',
-  fontSize: '1rem',
-  letterSpacing: '-0.2px',
-};
-
-const inputStyle = {
-  width: '100%',
-  padding: '1.2em 1.5em',
-  borderRadius: '12px',
-  border: '2px solid #e2e8f0',
-  fontSize: '1rem',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  backgroundColor: '#f8fafc',
-  color: '#2d3748',
-  fontFamily: 'inherit',
-};
-
-const inputFocusStyle = {
-  ...inputStyle,
-  borderColor: '#00796b',
-  backgroundColor: 'white',
-  boxShadow: '0 0 0 4px rgba(0, 150, 136, 0.1)',
-  transform: 'translateY(-2px)',
-};
-
-const textareaStyle = {
-  ...inputStyle,
-  minHeight: '180px',
-  resize: 'vertical',
-  lineHeight: '1.6',
-};
-
-const textareaFocusStyle = {
-  ...textareaStyle,
-  borderColor: '#00796b',
-  backgroundColor: 'white',
-  boxShadow: '0 0 0 4px rgba(0, 150, 136, 0.1)',
-  transform: 'translateY(-2px)',
-};
-
-const buttonStyle = {
-  padding: '1.4em 3em',
-  background: 'linear-gradient(135deg, #00796b 0%, #004d40 100%)',
-  color: 'white',
-  border: 'none',
-  borderRadius: '12px',
-  fontSize: '1.1rem',
-  fontWeight: '700',
-  cursor: 'pointer',
-  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-  width: '100%',
-  position: 'relative',
-  overflow: 'hidden',
-  boxShadow: '0 8px 25px rgba(0, 150, 136, 0.3)',
-  letterSpacing: '-0.2px',
-};
-
-const buttonHoverStyle = {
-  ...buttonStyle,
-  transform: 'translateY(-3px) scale(1.02)',
-  boxShadow: '0 15px 35px rgba(0, 150, 136, 0.4)',
-};
-
-const mapSectionStyle = {
-  padding: '6em 2em',
-  background: 'linear-gradient(135deg, #f0f9f8 0%, #e0f2f1 100%)',
-  clipPath: 'polygon(0 10%, 100% 0, 100% 90%, 0 100%)',
-};
-
-const mapContainerStyle = {
-  width: '100%',
-  height: '500px',
-  borderRadius: '20px',
-  boxShadow: '0 20px 50px rgba(0, 77, 64, 0.1)',
-  overflow: 'hidden',
-  marginTop: '3em',
-  border: '2px solid rgba(0, 150, 136, 0.1)',
-};
-
-const medicalIconStyle = {
-  fontSize: '3rem',
-  marginBottom: '1rem',
-  filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
-};
-
-// Medical-themed SVG Icons
-const MedicalIcons = {
-  email: `📧`,
-  phone: `📞`,
-  location: `🏥`,
-  time: `⏰`
-};
-
-const contactDetails = [
-  {
-    icon: MedicalIcons.email,
-    title: 'Email Communication',
-    details: ['info@snict.org', 'support@snict.org', 'membership@snict.org'],
-    link: 'mailto:info@snict.org',
-    description: 'For general inquiries and membership information'
-  },
-  {
-    icon: MedicalIcons.phone,
-    title: 'Phone Support',
-    details: ['+91-9876543210', '+91-9876543211', 'Emergency: +91-9876543212'],
-    link: 'tel:+919876543210',
-    description: 'Available during office hours for immediate assistance'
-  },
-  {
-    icon: MedicalIcons.location,
-    title: 'Medical Headquarters',
-    details: ['SNICT Building', 'Cardiology Complex', 'Hyderabad, Telangana', 'India - 500001'],
-    link: '#map',
-    description: 'Visit our cardiovascular technology center'
-  },
-  {
-    icon: MedicalIcons.time,
-    title: 'Medical Office Hours',
-    details: ['Monday - Friday: 8:00 AM - 6:00 PM', 'Saturday: 9:00 AM - 2:00 PM', 'Emergency Support: 24/7'],
-    description: 'Dedicated hours for cardiovascular professionals'
-  }
-];
-
-function Contact() {
-  const [focusedInput, setFocusedInput] = useState(null);
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
-  const [hoveredDetail, setHoveredDetail] = useState(null);
+const ContactPage = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     phone: '',
     subject: '',
     message: ''
   });
 
-  const handleInputFocus = (inputName) => {
-    setFocusedInput(inputName);
-  };
-
-  const handleInputBlur = () => {
-    setFocusedInput(null);
-  };
-
-  const handleDetailHover = (index) => {
-    setHoveredDetail(index);
-  };
-
-  const handleDetailLeave = () => {
-    setHoveredDetail(null);
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [id]: value
-    }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      console.log('Form submitted:', formData);
+      alert('Thank you for your message! We will get back to you within 24 hours.');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+      setIsSubmitting(false);
+    }, 2000);
   };
 
   return (
-    <HeaderFooter>
-    <div style={pageStyle}>
-
-      
-      {/* Hero Section */}
-      <section style={heroSectionStyle}>
-        <div style={heroPatternStyle}></div>
-        <div style={heroContentStyle}>
-          <h1 style={mainHeadingStyle}>Connect With Cardiovascular Experts</h1>
-          <p style={subHeadingStyle}>
-            Reach out to SNICT for collaboration, membership inquiries, or technical support. 
-            We're dedicated to advancing cardiovascular technology education and innovation.
-          </p>
-        </div>
-      </section>
-
-      {/* Contact Details Section */}
-      <section style={sectionStyle}>
-        <div style={{ maxWidth: '1300px', margin: '0 auto' }}>
-          <h2 style={{...formTitleStyle, marginBottom: '4rem'}}>
-            Medical Contact Channels
-            <div style={underlineStyle}></div>
-          </h2>
-          
-          <div style={contactDetailsStyle}>
-            {contactDetails.map((detail, index) => (
-              <div
-                key={index}
-                style={hoveredDetail === index ? detailItemHoverStyle : detailItemStyle}
-                onMouseEnter={() => handleDetailHover(index)}
-                onMouseLeave={handleDetailLeave}
-              >
-                <div style={detailIconContainerStyle}>
-                  <span style={medicalIconStyle}>{detail.icon}</span>
-                </div>
-                <h3 style={detailTitleStyle}>{detail.title}</h3>
-                <p style={{...detailTextStyle, fontSize: '1rem', color: '#00796b', fontStyle: 'italic'}}>
-                  {detail.description}
-                </p>
-                {detail.details.map((item, itemIndex) => (
-                  <p key={itemIndex} style={detailTextStyle}>{item}</p>
-                ))}
-                {detail.link && (
-                  <a 
-                    href={detail.link} 
-                    style={detailLinkStyle}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = 'rgba(0, 150, 136, 0.2)';
-                      e.target.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'rgba(0, 150, 136, 0.1)';
-                      e.target.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    {detail.title.includes('Email') ? 'Send Secure Email' : 
-                     detail.title.includes('Phone') ? 'Call Medical Line' : 
-                     'View Medical Center'}
-                  </a>
-                )}
-              </div>
-            ))}
+    <Layout>
+      <div style={styles.container}>
+        {/* HERO SECTION */}
+        <section style={styles.hero}>
+          <div style={styles.heroOverlay}></div>
+          <div style={styles.heroContent}>
+            <div style={styles.heroText}>
+              <h1 style={styles.heroTitle}>
+                Get In <span style={styles.highlight}>Touch</span>
+              </h1>
+              <p style={styles.heroSubtitle}>
+                Ready for your next transformation? Reach out to us — we're here to help you look and feel your best.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Form Section */}
-      <section style={{...sectionStyle, background: 'transparent'}}>
-        <div style={{ maxWidth: '1300px', margin: '0 auto' }}>
-          <div style={formContainerStyle}>
-            <div style={formPatternStyle}></div>
-            <h2 style={formTitleStyle}>
-              Medical Inquiry Form
-              <div style={underlineStyle}></div>
-            </h2>
-            
-            <form onSubmit={handleSubmit}>
-              <div style={formGridStyle}>
-                <div style={formGroupStyle}>
-                  <label style={labelStyle} htmlFor="firstName">First Name *</label>
-                  <input 
-                    style={focusedInput === 'firstName' ? inputFocusStyle : inputStyle}
-                    type="text" 
-                    id="firstName" 
-                    placeholder="Enter your first name"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    onFocus={() => handleInputFocus('firstName')}
-                    onBlur={handleInputBlur}
-                    required
-                  />
-                </div>
-                <div style={formGroupStyle}>
-                  <label style={labelStyle} htmlFor="lastName">Last Name *</label>
-                  <input 
-                    style={focusedInput === 'lastName' ? inputFocusStyle : inputStyle}
-                    type="text" 
-                    id="lastName" 
-                    placeholder="Enter your last name"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    onFocus={() => handleInputFocus('lastName')}
-                    onBlur={handleInputBlur}
-                    required
-                  />
+        {/* CONTACT MAIN SECTION */}
+        <section style={styles.contactSection}>
+          <div style={styles.contactContainer}>
+            <div style={styles.contactGrid}>
+              {/* Contact Information Side */}
+              <div style={styles.infoSide}>
+                <div style={styles.infoCard}>
+                  <h2 style={styles.infoTitle}>Contact Information</h2>
+                  <p style={styles.infoDescription}>
+                    We're here to assist you with any questions about our services, pricing, or availability. 
+                    Don't hesitate to reach out — we typically respond within a few hours.
+                  </p>
+
+                  <div style={styles.contactMethods}>
+                    {/* Phone */}
+                    <div style={styles.contactMethod}>
+                      <div style={styles.methodImage}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1563013546-7e5c7b6dc223?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                          <div style={styles.imageOverlay}></div>
+                          <div style={styles.methodContent}>
+                            <h3 style={styles.methodTitle}>Phone / Text</h3>
+                            <p style={styles.methodDescription}>
+                              Preferred method for quick responses and appointment scheduling
+                            </p>
+                            <div style={styles.contactDetail}>
+                              <span style={styles.detailLabel}>Direct Line:</span>
+                              <a href="tel:9133130064" style={styles.detailValue}>(913) 313-0064</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div style={styles.contactMethod}>
+                      <div style={styles.methodImage}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                          <div style={styles.imageOverlay}></div>
+                          <div style={styles.methodContent}>
+                            <h3 style={styles.methodTitle}>Email</h3>
+                            <p style={styles.methodDescription}>
+                              Send us detailed inquiries or service questions
+                            </p>
+                            <div style={styles.contactDetail}>
+                              <span style={styles.detailLabel}>Email Address:</span>
+                              <a href="mailto:cutculturekc@gmail.com" style={styles.detailValue}>cutculturekc@gmail.com</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Location */}
+                    <div style={styles.contactMethod}>
+                      <div style={styles.methodImage}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                          <div style={styles.imageOverlay}></div>
+                          <div style={styles.methodContent}>
+                            <h3 style={styles.methodTitle}>Location</h3>
+                            <p style={styles.methodDescription}>
+                              Visit our modern barbershop in the heart of Kansas City
+                            </p>
+                            <div style={styles.contactDetail}>
+                              <span style={styles.detailLabel}>Address:</span>
+                              <span style={styles.detailValue}>Kansas City, KS</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Business Hours */}
+                    <div style={styles.contactMethod}>
+                      <div style={styles.methodImage}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                          <div style={styles.imageOverlay}></div>
+                          <div style={styles.methodContent}>
+                            <h3 style={styles.methodTitle}>Business Hours</h3>
+                            <p style={styles.methodDescription}>
+                              Flexible scheduling available to fit your busy lifestyle
+                            </p>
+                            <div style={styles.hoursList}>
+                              <div style={styles.hourItem}>
+                                <span style={styles.day}>Monday - Saturday:</span>
+                                <span style={styles.time}>9:00 AM - 7:00 PM</span>
+                              </div>
+                              <div style={styles.hourItem}>
+                                <span style={styles.day}>Sunday:</span>
+                                <span style={styles.time}>Closed</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div style={formGridStyle}>
-                <div style={formGroupStyle}>
-                  <label style={labelStyle} htmlFor="email">Professional Email *</label>
-                  <input 
-                    style={focusedInput === 'email' ? inputFocusStyle : inputStyle}
-                    type="email" 
-                    id="email" 
-                    placeholder="your.email@hospital.org"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    onFocus={() => handleInputFocus('email')}
-                    onBlur={handleInputBlur}
-                    required
-                  />
+              {/* Contact Form Side */}
+              <div style={styles.formSide}>
+                <div style={styles.formCard}>
+                  <h2 style={styles.formTitle}>Send Us a Message</h2>
+                  <p style={styles.formDescription}>
+                    Have a question or ready to book an appointment? Fill out the form below and we'll get back to you as soon as possible.
+                  </p>
+
+                  <form onSubmit={handleSubmit} style={styles.contactForm}>
+                    <div style={styles.formRow}>
+                      <div style={styles.inputGroup}>
+                        <label style={styles.label}>Full Name *</label>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          style={styles.input}
+                          placeholder="Enter your full name"
+                          required
+                        />
+                      </div>
+
+                      <div style={styles.inputGroup}>
+                        <label style={styles.label}>Email Address *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          style={styles.input}
+                          placeholder="your@email.com"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div style={styles.formRow}>
+                      <div style={styles.inputGroup}>
+                        <label style={styles.label}>Phone Number</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          style={styles.input}
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+
+                      <div style={styles.inputGroup}>
+                        <label style={styles.label}>Subject *</label>
+                        <select
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleInputChange}
+                          style={styles.select}
+                          required
+                        >
+                          <option value="">Select a subject</option>
+                          <option value="appointment">Book Appointment</option>
+                          <option value="service-question">Service Question</option>
+                          <option value="pricing">Pricing Inquiry</option>
+                          <option value="general">General Information</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style={styles.inputGroup}>
+                      <label style={styles.label}>Message *</label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        style={styles.textarea}
+                        placeholder="Tell us how we can help you..."
+                        rows="6"
+                        required
+                      />
+                    </div>
+
+                    <button 
+                      type="submit" 
+                      style={{
+                        ...styles.submitButton,
+                        ...(isSubmitting && styles.submitButtonLoading)
+                      }}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Sending Message...' : 'Send Message'}
+                    </button>
+                  </form>
                 </div>
-                <div style={formGroupStyle}>
-                  <label style={labelStyle} htmlFor="phone">Contact Number</label>
-                  <input 
-                    style={focusedInput === 'phone' ? inputFocusStyle : inputStyle}
-                    type="tel" 
-                    id="phone" 
-                    placeholder="+91-XXXXXXXXXX"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    onFocus={() => handleInputFocus('phone')}
-                    onBlur={handleInputBlur}
-                  />
+
+                {/* Quick Actions */}
+                <div style={styles.quickActions}>
+                  <div style={styles.actionCard}>
+                    <h3 style={styles.actionTitle}>Quick Connect</h3>
+                    <p style={styles.actionDescription}>
+                      Prefer to connect directly? Use these quick options.
+                    </p>
+                    <div style={styles.actionButtons}>
+                      <a href="tel:9133130064" style={styles.actionButtonPrimary}>
+                        Call Now
+                      </a>
+                      <a href="sms:9133130064" style={styles.actionButtonSecondary}>
+                        Send Text
+                      </a>
+                      <a href="mailto:cutculturekc@gmail.com" style={styles.actionButtonSecondary}>
+                        Email Us
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div style={fullWidthGroupStyle}>
-                <label style={labelStyle} htmlFor="subject">Inquiry Subject *</label>
-                <select 
-                  style={focusedInput === 'subject' ? inputFocusStyle : inputStyle}
-                  id="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  onFocus={() => handleInputFocus('subject')}
-                  onBlur={handleInputBlur}
-                  required
-                >
-                  <option value="">Select Inquiry Type</option>
-                  <option value="membership">Membership Information</option>
-                  <option value="training">Training Programs</option>
-                  <option value="collaboration">Research Collaboration</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="other">Other</option>
-                </select>
+        {/* MAP & LOCATION SECTION */}
+        <section style={styles.mapSection}>
+          <div style={styles.mapContainer}>
+            <div style={styles.mapContent}>
+              <h2 style={styles.mapTitle}>Visit Our Barbershop</h2>
+              <p style={styles.mapDescription}>
+                Experience the Cut Culture difference in person. Our modern, comfortable space is designed 
+                to provide you with the ultimate grooming experience.
+              </p>
+              
+              <div style={styles.locationDetails}>
+                <div style={styles.locationCard}>
+                  <div style={styles.locationImage}>
+                    <div style={{...styles.locationImageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                      <div style={styles.locationOverlay}></div>
+                      <div style={styles.locationText}>
+                        <h3 style={styles.locationTitle}>Cut Culture Barbershop</h3>
+                        <p style={styles.locationAddress}>Kansas City, KS</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div style={styles.locationInfo}>
+                    <div style={styles.infoItem}>
+                      <strong style={styles.infoLabel}>Address:</strong>
+                      <span style={styles.infoValue}>Kansas City, Kansas</span>
+                    </div>
+                    <div style={styles.infoItem}>
+                      <strong style={styles.infoLabel}>Phone:</strong>
+                      <span style={styles.infoValue}> (913) 313-0064</span>
+                    </div>
+                    <div style={styles.infoItem}>
+                      <strong style={styles.infoLabel}>Email:</strong>
+                      <span style={styles.infoValue}>cutculturekc@gmail.com</span>
+                    </div>
+                    <div style={styles.infoItem}>
+                      <strong style={styles.infoLabel}>Hours:</strong>
+                      <span style={styles.infoValue}>Mon-Sat: 9AM-7PM</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div style={fullWidthGroupStyle}>
-                <label style={labelStyle} htmlFor="message">Medical Inquiry Details *</label>
-                <textarea 
-                  style={focusedInput === 'message' ? textareaFocusStyle : textareaStyle}
-                  id="message" 
-                  placeholder="Please describe your cardiovascular technology inquiry or collaboration request..."
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  onFocus={() => handleInputFocus('message')}
-                  onBlur={handleInputBlur}
-                  required
-                />
-              </div>
-
-              <button 
-                style={isButtonHovered ? buttonHoverStyle : buttonStyle}
-                type="submit"
-                onMouseEnter={() => setIsButtonHovered(true)}
-                onMouseLeave={() => setIsButtonHovered(false)}
-              >
-                Submit Medical Inquiry
+        {/* CTA SECTION */}
+        <section style={styles.ctaSection}>
+          <div style={styles.ctaBackground}></div>
+          <div style={styles.ctaContent}>
+            <h2 style={styles.ctaTitle}>Ready for Your Next Cut?</h2>
+            <p style={styles.ctaText}>
+              Don't wait — book your appointment today and experience the premium service that sets Cut Culture apart.
+            </p>
+            <div style={styles.ctaButtons}>
+              <a href="tel:9133130064" style={styles.ctaButtonPrimary}>
+                Call to Book:  (913) 313-0064
+              </a>
+              <button style={styles.ctaButtonSecondary}>
+                View Services
               </button>
-            </form>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* Map Section */}
-      <section style={mapSectionStyle}>
-        <div style={{ maxWidth: '1300px', margin: '0 auto' }}>
-          <h2 style={{...formTitleStyle, marginBottom: '1rem'}}>
-            Cardiovascular Technology Center
-            <div style={underlineStyle}></div>
-          </h2>
-          <p style={{...detailTextStyle, maxWidth: '700px', margin: '0 auto 3em', fontSize: '1.2rem'}}>
-            Visit our state-of-the-art cardiovascular technology facility in Hyderabad, 
-            equipped with the latest interventional equipment and training resources.
-          </p>
-          
-          <div style={mapContainerStyle}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.576823588998!2d78.4312448148866!3d17.388701288079815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9046a36f4523%3A0xf639a04a58141209!2sHyderabad%2C%20Telangana%2C%20India!5e0!3m2!1sen!2s!4v1618491851234!5m2!1sen!2s"
-              width="100%"
-              height="100%"
-              style={{ border: '0' }}
-              allowFullScreen=""
-              loading="lazy"
-              title="SNICT Cardiovascular Center Location"
-            ></iframe>
-          </div>
-        </div>
-      </section>
-    </div>
-    </HeaderFooter>
+      {/* Add CSS Animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        @keyframes glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+          }
+        }
+
+        .contact-method {
+          animation: fadeInUp 0.6s ease-out;
+        }
+
+        .form-card {
+          animation: slideInRight 0.8s ease-out;
+        }
+
+        .info-card {
+          animation: slideInLeft 0.8s ease-out;
+        }
+
+        .location-card {
+          animation: fadeInUp 1s ease-out;
+        }
+
+        .contact-method:hover {
+          transform: translateY(-5px);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-button-primary:hover {
+          animation: pulse 0.5s ease-in-out;
+        }
+
+        .cta-button-primary:hover {
+          animation: glow 2s infinite;
+        }
+
+        .input:focus, .select:focus, .textarea:focus {
+          animation: glow 2s infinite;
+        }
+      `}</style>
+    </Layout>
   );
-}
+};
 
-export default Contact;
+// Professional Styles with Animations
+const styles = {
+  container: {
+    width: '100%',
+    overflow: 'hidden'
+  },
+
+  // HERO SECTION
+  hero: {
+    minHeight: '50vh',
+    backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    position: 'relative',
+    padding: '4rem 0'
+  },
+  
+  heroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(212,175,55,0.2) 100%)',
+    zIndex: 1
+  },
+  
+  heroContent: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem',
+    textAlign: 'center',
+    position: 'relative',
+    zIndex: 2
+  },
+  
+  heroText: {
+    color: 'white'
+  },
+  
+  heroTitle: {
+    fontSize: '3.5rem',
+    fontWeight: 'bold',
+    marginBottom: '1.5rem',
+    lineHeight: '1.2',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+  },
+  
+  highlight: {
+    color: '#D4AF37',
+    background: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    textShadow: 'none'
+  },
+  
+  heroSubtitle: {
+    fontSize: '1.3rem',
+    lineHeight: '1.6',
+    color: '#FFFFFF',
+    maxWidth: '600px',
+    margin: '0 auto',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+  },
+
+  // CONTACT SECTION
+  contactSection: {
+    padding: '6rem 0',
+    backgroundColor: '#ffffff'
+  },
+  
+  contactContainer: {
+    maxWidth: '1400px',
+    margin: '0 auto',
+    padding: '0 2rem'
+  },
+  
+  contactGrid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '4rem',
+    alignItems: 'flex-start'
+  },
+  
+  // INFO SIDE
+  infoSide: {
+    animation: 'slideInLeft 0.8s ease-out'
+  },
+  
+  infoCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2rem'
+  },
+  
+  infoTitle: {
+    fontSize: '2.2rem',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: '1rem'
+  },
+  
+  infoDescription: {
+    fontSize: '1.1rem',
+    lineHeight: '1.6',
+    color: '#666',
+    marginBottom: '2rem'
+  },
+  
+  contactMethods: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem'
+  },
+  
+  contactMethod: {
+    animation: 'fadeInUp 0.6s ease-out'
+  },
+  
+  methodImage: {
+    borderRadius: '12px',
+    overflow: 'hidden',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+    transition: 'all 0.3s ease'
+  },
+  
+  imageContainer: {
+    height: '200px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'flex-end'
+  },
+  
+  imageOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.4) 50%, transparent 100%)',
+    zIndex: 1
+  },
+  
+  methodContent: {
+    position: 'relative',
+    zIndex: 2,
+    padding: '1.5rem',
+    color: 'white',
+    width: '100%'
+  },
+  
+  methodTitle: {
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '0.5rem'
+  },
+  
+  methodDescription: {
+    fontSize: '0.95rem',
+    color: '#CCCCCC',
+    marginBottom: '1rem',
+    lineHeight: '1.5'
+  },
+  
+  contactDetail: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.25rem'
+  },
+  
+  detailLabel: {
+    fontSize: '0.85rem',
+    color: '#CCCCCC',
+    fontWeight: '500'
+  },
+  
+  detailValue: {
+    fontSize: '1.1rem',
+    color: '#FFFFFF',
+    fontWeight: '600',
+    textDecoration: 'none',
+    transition: 'color 0.3s ease'
+  },
+  
+  hoursList: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem'
+  },
+  
+  hourItem: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  
+  day: {
+    fontSize: '0.9rem',
+    color: '#CCCCCC'
+  },
+  
+  time: {
+    fontSize: '0.9rem',
+    color: '#FFFFFF',
+    fontWeight: '600'
+  },
+  
+  // FORM SIDE
+  formSide: {
+    animation: 'slideInRight 0.8s ease-out'
+  },
+  
+  formCard: {
+    backgroundColor: '#f8f9fa',
+    borderRadius: '12px',
+    padding: '2.5rem',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+    marginBottom: '2rem'
+  },
+  
+  formTitle: {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: '1rem'
+  },
+  
+  formDescription: {
+    fontSize: '1rem',
+    color: '#666',
+    lineHeight: '1.6',
+    marginBottom: '2rem'
+  },
+  
+  contactForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem'
+  },
+  
+  formRow: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: '1.5rem'
+  },
+  
+  inputGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem'
+  },
+  
+  label: {
+    fontSize: '0.95rem',
+    fontWeight: '600',
+    color: '#1a1a1a'
+  },
+  
+  input: {
+    padding: '1rem',
+    border: '2px solid #e9ecef',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    transition: 'all 0.3s ease',
+    backgroundColor: '#ffffff'
+  },
+  
+  select: {
+    padding: '1rem',
+    border: '2px solid #e9ecef',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    transition: 'all 0.3s ease',
+    backgroundColor: '#ffffff',
+    cursor: 'pointer'
+  },
+  
+  textarea: {
+    padding: '1rem',
+    border: '2px solid #e9ecef',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    transition: 'all 0.3s ease',
+    backgroundColor: '#ffffff',
+    resize: 'vertical',
+    minHeight: '120px',
+    fontFamily: 'inherit'
+  },
+  
+  submitButton: {
+    backgroundColor: '#D4AF37',
+    color: '#1a1a1a',
+    border: 'none',
+    padding: '1.2rem 2rem',
+    borderRadius: '8px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+  },
+  
+  submitButtonLoading: {
+    opacity: 0.7,
+    cursor: 'not-allowed'
+  },
+  
+  // QUICK ACTIONS
+  quickActions: {
+    animation: 'fadeInUp 1s ease-out'
+  },
+  
+  actionCard: {
+    backgroundColor: '#1a1a1a',
+    borderRadius: '12px',
+    padding: '2rem',
+    color: 'white'
+  },
+  
+  actionTitle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '0.75rem'
+  },
+  
+  actionDescription: {
+    fontSize: '0.95rem',
+    color: '#CCCCCC',
+    marginBottom: '1.5rem',
+    lineHeight: '1.5'
+  },
+  
+  actionButtons: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.75rem'
+  },
+  
+  actionButtonPrimary: {
+    backgroundColor: '#D4AF37',
+    color: '#1a1a1a',
+    border: 'none',
+    padding: '1rem 1.5rem',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    textAlign: 'center',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+  },
+  
+  actionButtonSecondary: {
+    backgroundColor: 'transparent',
+    color: '#D4AF37',
+    border: '2px solid #D4AF37',
+    padding: '1rem 1.5rem',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    textAlign: 'center',
+    transition: 'all 0.3s ease'
+  },
+  
+  // MAP SECTION
+  mapSection: {
+    padding: '6rem 0',
+    backgroundColor: '#f8f9fa'
+  },
+  
+  mapContainer: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 2rem'
+  },
+  
+  mapContent: {
+    textAlign: 'center'
+  },
+  
+  mapTitle: {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: '#1a1a1a',
+    marginBottom: '1rem'
+  },
+  
+  mapDescription: {
+    fontSize: '1.1rem',
+    color: '#666',
+    lineHeight: '1.6',
+    marginBottom: '3rem',
+    maxWidth: '800px',
+    margin: '0 auto 3rem auto'
+  },
+  
+  locationDetails: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  
+  locationCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: '12px',
+    overflow: 'hidden',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+    maxWidth: '500px',
+    width: '100%',
+    animation: 'fadeInUp 1s ease-out'
+  },
+  
+  locationImage: {
+    height: '250px'
+  },
+  
+  locationImageContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'flex-end'
+  },
+  
+  locationOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.4) 50%, transparent 100%)',
+    zIndex: 1
+  },
+  
+  locationText: {
+    position: 'relative',
+    zIndex: 2,
+    padding: '2rem',
+    color: 'white',
+    width: '100%'
+  },
+  
+  locationTitle: {
+    fontSize: '1.8rem',
+    fontWeight: 'bold',
+    color: '#D4AF37',
+    marginBottom: '0.5rem'
+  },
+  
+  locationAddress: {
+    fontSize: '1.1rem',
+    color: '#FFFFFF'
+  },
+  
+  locationInfo: {
+    padding: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem'
+  },
+  
+  infoItem: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: '0.75rem',
+    borderBottom: '1px solid #f0f0f0'
+  },
+  
+  infoLabel: {
+    color: '#1a1a1a',
+    fontSize: '0.95rem'
+  },
+  
+  infoValue: {
+    color: '#666',
+    fontSize: '0.95rem',
+    fontWeight: '500'
+  },
+  
+  // CTA SECTION
+  ctaSection: {
+    padding: '5rem 0',
+    backgroundColor: '#1a1a1a',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  
+  ctaBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundImage: 'url(https://images.unsplash.com/photo-1593705114312-a0ee03a3f7d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    opacity: '0.2',
+    zIndex: 1
+  },
+  
+  ctaContent: {
+    maxWidth: '800px',
+    margin: '0 auto',
+    textAlign: 'center',
+    padding: '0 2rem',
+    position: 'relative',
+    zIndex: 2
+  },
+  
+  ctaTitle: {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: '1.5rem',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+  },
+  
+  ctaText: {
+    fontSize: '1.2rem',
+    color: '#CCCCCC',
+    lineHeight: '1.6',
+    marginBottom: '2.5rem',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+  },
+  
+  ctaButtons: {
+    display: 'flex',
+    gap: '1rem',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
+  },
+  
+  ctaButtonPrimary: {
+    backgroundColor: '#D4AF37',
+    color: '#1a1a1a',
+    border: 'none',
+    padding: '1.2rem 2.5rem',
+    borderRadius: '8px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
+    textDecoration: 'none',
+    display: 'inline-block',
+    animation: 'glow 2s infinite'
+  },
+  
+  ctaButtonSecondary: {
+    backgroundColor: 'transparent',
+    color: '#D4AF37',
+    border: '2px solid #D4AF37',
+    padding: '1.2rem 2.5rem',
+    borderRadius: '8px',
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s ease',
+    backdropFilter: 'blur(10px)'
+  }
+};
+
+export default ContactPage;
