@@ -1,5 +1,10 @@
 import React from 'react';
 import Layout from '../components/HeaderFooter';
+import ai from '../assets/images/a1.jpeg';
+import ai5 from '../assets/images/a5.jpeg';
+import ai2 from '../assets/images/a2.jpeg';
+import ai6 from '../assets/images/a6.jpeg';
+
 
 const HomePage = () => {
   return (
@@ -8,24 +13,25 @@ const HomePage = () => {
         {/* HERO SECTION WITH BACKGROUND IMAGE */}
         <section style={styles.hero}>
           <div style={styles.heroOverlay}></div>
-          <div style={styles.heroContent}>
-            <div style={styles.heroText}>
-              <h1 style={styles.heroTitle}>
+          <div style={styles.heroContent} className="hero-content-responsive"> {/* Add class for MQ */}
+            <div className="hero-text" style={styles.heroText}>
+              <h1 style={styles.heroTitle} className="hero-title-responsive">
                 Welcome to <span style={styles.highlight}>Cut Culture</span>
               </h1>
-              <p style={styles.heroSubtitle}>
+              <p style={styles.heroSubtitle} className="hero-subtitle-responsive">
                 A modern barbershop where precision meets style. At Cut Culture, we don't just give haircuts, we create confidence. We are dedicated to clean fades, sharp lines, and timeless looks tailored to you.
               </p>
-             <div style={styles.heroButtons}>
+             <div style={styles.heroButtons} className="hero-buttons-responsive">
   <button
-    style={styles.primaryButton}
+    className="primary-button"
+    style={{...styles.primaryButton, ...styles.responsiveButton}}
     onClick={() => (window.location.href = "/BookingPage")}
   >
     Book Appointment
   </button>
 
   <button
-    style={styles.secondaryButton}
+    style={{...styles.secondaryButton, ...styles.responsiveButton}}
     onClick={() => (window.location.href = "/ServicesPage")}
   >
     View Services
@@ -33,69 +39,74 @@ const HomePage = () => {
 </div>
 
             </div>
-            <div style={styles.heroImage}>
+            <div className="hero-image-responsive" style={styles.heroImage}> {/* Add class for MQ */}
               <div style={styles.imagePlaceholder}>
                 <div style={styles.imageText}>Professional Barber at Work</div>
               </div>
             </div>
           </div>
           <div style={styles.scrollIndicator}>
-            <div style={styles.scrollArrow}></div>
+            <div className="scroll-arrow" style={styles.scrollArrow}></div>
           </div>
         </section>
 
         {/* FEATURED SERVICES SECTION */}
         <section style={styles.services}>
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>Featured Services</h2>
-            <p style={styles.sectionSubtitle}>Premium grooming services tailored to your style</p>
+          <div style={styles.sectionHeader} className="section-header-responsive">
+            <h2 style={styles.sectionTitle} className="section-title-responsive">Featured Services</h2>
+            <p style={styles.sectionSubtitle} className="section-subtitle-responsive">Premium grooming services tailored to your style</p>
           </div>
           
-          <div style={styles.servicesGrid}>
+          <div style={styles.servicesGrid} className="services-grid-responsive">
             {/* Service Card 1 */}
-            <div style={styles.serviceCard}>
-              <div style={styles.serviceImage}>
-                <div style={{...styles.serviceImagePlaceholder, backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
-                  
-                </div>
-              </div>
-              <div style={styles.serviceContent}>
-                <h3 style={styles.serviceTitle}>Professional Haircuts</h3>
-                <p style={styles.serviceDescription}>
-                  Expert haircuts with precision styling. From classic cuts to modern trends, we deliver perfection.
-                </p>
-                <div style={styles.serviceFeatures}>
-                  <span style={styles.feature}>Clean Fades</span>
-                  <span style={styles.feature}>Sharp Lines</span>
-                  <span style={styles.feature}>Style Consultation</span>
-                </div>
-               
-              </div>
-            </div>
+           <div className="service-card" style={styles.serviceCard}>
+  <div style={styles.serviceImage}>
+    <div
+      style={{
+        ...styles.serviceImagePlaceholder,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${ai})`,
+      }}
+    ></div>
+  </div>
+  <div style={styles.serviceContent}>
+    <h3 style={styles.serviceTitle}>Professional Haircuts</h3>
+    <p style={styles.serviceDescription}>
+      Expert haircuts with precision styling. From classic cuts to modern trends, we deliver perfection.
+    </p>
+    <div style={styles.serviceFeatures}>
+      <span style={styles.feature}>Clean Fades</span>
+      <span style={styles.feature}>Sharp Lines</span>
+      <span style={styles.feature}>Style Consultation</span>
+    </div>
+  </div>
+</div>
 
-            {/* Service Card 2 */}
-            <div style={styles.serviceCard}>
-              <div style={styles.serviceImage}>
-                <div style={{...styles.serviceImagePlaceholder, backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://plus.unsplash.com/premium_photo-1661288508630-829e930528e7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
-                  
-                </div>
-              </div>
-              <div style={styles.serviceContent}>
-                <h3 style={styles.serviceTitle}>Beard Trims & Grooming</h3>
-                <p style={styles.serviceDescription}>
-                  Professional beard shaping and grooming to keep your facial hair looking sharp and well-maintained.
-                </p>
-                <div style={styles.serviceFeatures}>
-                  <span style={styles.feature}>Beard Shaping</span>
-                  <span style={styles.feature}>Hot Towel</span>
-                  <span style={styles.feature}>Oil Treatment</span>
-                </div>
-                {/* <button style={styles.serviceButton}>Learn More</button> */}
-              </div>
-            </div>
+
+           <div className="service-card" style={styles.serviceCard}>
+  <div style={styles.serviceImage}>
+    <div
+      style={{
+        ...styles.serviceImagePlaceholder,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${ai5})`,
+      }}
+    ></div>
+  </div>
+  <div style={styles.serviceContent}>
+    <h3 style={styles.serviceTitle}>Beard Trims & Grooming</h3>
+    <p style={styles.serviceDescription}>
+      Professional beard shaping and grooming to keep your facial hair looking sharp and well-maintained.
+    </p>
+    <div style={styles.serviceFeatures}>
+      <span style={styles.feature}>Beard Shaping</span>
+      <span style={styles.feature}>Hot Towel</span>
+      <span style={styles.feature}>Oil Treatment</span>
+    </div>
+    {/* <button style={styles.serviceButton}>Learn More</button> */}
+  </div>
+</div>
 
             {/* Service Card 3 */}
-            <div style={styles.serviceCard}>
+            <div className="service-card" style={styles.serviceCard}>
               <div style={styles.serviceImage}>
                 <div style={{...styles.serviceImagePlaceholder, backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
               
@@ -116,70 +127,80 @@ const HomePage = () => {
             </div>
 
             {/* Service Card 4 */}
-            <div style={styles.serviceCard}>
-              <div style={styles.serviceImage}>
-                <div style={{...styles.serviceImagePlaceholder, backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://plus.unsplash.com/premium_photo-1661507216779-62e4fd5b1957?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
-                </div>
-              </div>
-              <div style={styles.serviceContent}>
-                <h3 style={styles.serviceTitle}>Premium Add-Ons</h3>
-                <p style={styles.serviceDescription}>
-                  Enhance your grooming experience with our premium add-on services and luxury treatments.
-                </p>
-                <div style={styles.serviceFeatures}>
-                  <span style={styles.feature}>Hot Lather Shave</span>
-                  <span style={styles.feature}>Facial Massage</span>
-                  <span style={styles.feature}>Hair Treatment</span>
-                </div>
-                {/* <button style={styles.serviceButton}>Learn More</button> */}
-              </div>
-            </div>
+          <div className="service-card" style={styles.serviceCard}>
+  <div style={styles.serviceImage}>
+    <div
+      style={{
+        ...styles.serviceImagePlaceholder,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${ai2})`,
+      }}
+    ></div>
+  </div>
+  <div style={styles.serviceContent}>
+    <h3 style={styles.serviceTitle}>Premium Add-Ons</h3>
+    <p style={styles.serviceDescription}>
+      Enhance your grooming experience with our premium add-on services and luxury treatments.
+    </p>
+    <div style={styles.serviceFeatures}>
+      <span style={styles.feature}>Hot Lather Shave</span>
+      <span style={styles.feature}>Facial Massage</span>
+      <span style={styles.feature}>Hair Treatment</span>
+    </div>
+    {/* <button style={styles.serviceButton}>Learn More</button> */}
+  </div>
+</div>
           </div>
         </section>
 
         {/* CTA SECTION */}
         <section style={styles.ctaSection}>
           <div style={styles.ctaBackground}></div>
-          <div style={styles.ctaContent}>
-            <h2 style={styles.ctaTitle}>
+          <div style={styles.ctaContent} className="cta-content-responsive">
+            <h2 style={styles.ctaTitle} className="cta-title-responsive">
               Ready for a Fresh Look?
             </h2>
-            <p style={styles.ctaText}>
+            <p style={styles.ctaText} className="cta-text-responsive">
               Book your appointment today and experience the culture of precision grooming and exceptional service.
             </p>
-            <div style={styles.ctaButtons}>
+            <div style={styles.ctaButtons} className="cta-buttons-responsive">
               <button
-    style={styles.primaryButton}
-    onClick={() => (window.location.href = "/BookingPage")}
-  >
-    Book now
-  </button>
-              <button style={styles.ctaSecondaryButton}>Call:  (913) 313-0064</button>
+                className="primary-button"
+                style={{...styles.primaryButton, ...styles.ctaPrimaryButton, ...styles.responsiveCtaButton}}
+                onClick={() => (window.location.href = "/BookingPage")}
+              >
+                Book now
+              </button>
+              <button style={{...styles.secondaryButton, ...styles.ctaSecondaryButton, ...styles.responsiveCtaButton}}>Call:  (913) 313-0064</button>
             </div>
           </div>
         </section>
 
         {/* WHY CHOOSE US SECTION WITH REAL IMAGES */}
         <section style={styles.whyUs}>
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>Why Choose Cut Culture?</h2>
-            <p style={styles.sectionSubtitle}>Experience the difference of premium barber services</p>
+          <div style={styles.sectionHeader} className="section-header-responsive">
+            <h2 style={styles.sectionTitle} className="section-title-responsive">Why Choose Cut Culture?</h2>
+            <p style={styles.sectionSubtitle} className="section-subtitle-responsive">Experience the difference of premium barber services</p>
           </div>
           
-          <div style={styles.featuresGrid}>
-            <div style={styles.featureItem}>
-              <div style={{...styles.featureImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431529-5a74f50ef2e7?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
-                <div style={styles.featureOverlay}></div>
-                <div style={styles.featureContent}>
-                  <h3 style={styles.featureTitle}>Precision Cuts</h3>
-                  <p style={styles.featureDescription}>
-                    Every cut is executed with meticulous attention to detail and precision.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div style={styles.featuresGrid} className="features-grid-responsive">
+            <div className="feature-item" style={styles.featureItem}>
+  <div
+    style={{
+      ...styles.featureImage,
+      backgroundImage: `url(${ai6})`,
+    }}
+  >
+    <div style={styles.featureOverlay}></div>
+    <div style={styles.featureContent}>
+      <h3 style={styles.featureTitle}>Precision Cuts</h3>
+      <p style={styles.featureDescription}>
+        Every cut is executed with meticulous attention to detail and precision.
+      </p>
+    </div>
+  </div>
+</div>
             
-            <div style={styles.featureItem}>
+            <div className="feature-item" style={styles.featureItem}>
               <div style={{...styles.featureImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1677444546740-7092c86ac54d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
                 <div style={styles.featureOverlay}></div>
                 <div style={styles.featureContent}>
@@ -191,7 +212,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div style={styles.featureItem}>
+            <div className="feature-item" style={styles.featureItem}>
               <div style={{...styles.featureImage, backgroundImage: 'url(https://thumbs.dreamstime.com/b/men-s-grooming-tools-barber-shop-equipment-supplies-men-s-grooming-tools-barber-shop-equipment-supplies-wood-table-men-121160387.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
                 <div style={styles.featureOverlay}></div>
                 <div style={styles.featureContent}>
@@ -203,7 +224,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div style={styles.featureItem}>
+            <div className="feature-item" style={styles.featureItem}>
               <div style={{...styles.featureImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
                 <div style={styles.featureOverlay}></div>
                 <div style={styles.featureContent}>
@@ -218,7 +239,17 @@ const HomePage = () => {
         </section>
       </div>
 
-      {/* Add CSS Animations */}
+      {/* Add CSS Animations and Media Queries */}
+      <style jsx global>{`
+        /* Global CSS for Box Sizing and Overflow Fix */
+        html, body, #__next {
+          overflow-x: hidden;
+        }
+        * {
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+      `}</style>
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -289,7 +320,7 @@ const HomePage = () => {
           animation: slideInFromLeft 1s ease-out;
         }
 
-        .hero-image {
+        .hero-image-responsive {
           animation: slideInFromRight 1s ease-out;
         }
 
@@ -310,6 +341,101 @@ const HomePage = () => {
         .primary-button:hover {
           animation: pulse 0.5s ease-in-out;
         }
+
+        /* --- MOBILE RESPONSIVENESS (Media Queries) --- */
+
+        /* Max width 768px (Tablets and Smaller) */
+        @media (max-width: 768px) {
+          /* HERO SECTION */
+          .hero-content-responsive {
+            grid-template-columns: 1fr; /* Stack on mobile */
+            padding: 0 1.5rem;
+            gap: 2rem;
+            /* Override inline style */
+            grid-template-columns: 1fr !important;
+          }
+
+          .hero-text {
+            order: 1; /* Text first */
+          }
+          
+          /* CRITICAL FIX: Hide the large placeholder image completely */
+          .hero-image-responsive {
+            display: none !important;
+            animation: none;
+            order: 2; 
+          }
+
+          .hero-title-responsive {
+            font-size: 2.5rem !important; /* Smaller title */
+            text-align: center;
+          }
+
+          .hero-subtitle-responsive {
+            font-size: 1rem !important;
+            text-align: center;
+            max-width: 100%;
+          }
+
+          .hero-buttons-responsive {
+            justify-content: center; /* Center buttons */
+          }
+          
+          [style*="hero"] {
+              min-height: 80vh !important; /* Shorter hero section */
+          }
+          
+          /* SECTION HEADERS */
+          .section-header-responsive {
+             margin-bottom: 3rem !important;
+             padding: 0 1.5rem !important;
+          }
+
+          .section-title-responsive {
+            font-size: 2rem !important;
+          }
+          
+          .section-subtitle-responsive {
+            font-size: 0.9rem !important;
+          }
+
+          /* GRIDS */
+          .services-grid-responsive,
+          .features-grid-responsive {
+            grid-template-columns: 1fr !important; /* Force single column on mobile */
+            padding: 0 1.5rem !important;
+          }
+
+          /* CTA SECTION */
+          .cta-content-responsive {
+              padding: 0 1.5rem !important;
+          }
+          .cta-title-responsive {
+            font-size: 2rem !important;
+          }
+          
+          .cta-text-responsive {
+            font-size: 1rem !important;
+          }
+          
+          .cta-buttons-responsive {
+            flex-direction: column !important; /* Stack buttons */
+            align-items: center;
+            gap: 1rem;
+          }
+          
+          /* Buttons */
+          [style*="responsiveButton"],
+          [style*="responsiveCtaButton"] {
+            width: 90% !important; /* Make buttons take up most of the width */
+            padding: 0.8rem 1.5rem !important; /* Smaller padding */
+            font-size: 1rem !important;
+          }
+          
+          [style*="featureItem"] {
+            height: 250px !important; /* Shorter height for feature cards */
+          }
+        }
       `}</style>
     </Layout>
   );
@@ -320,6 +446,16 @@ const styles = {
   container: {
     width: '100%',
     overflow: 'hidden'
+  },
+  
+  // Custom mobile button styles to ensure they override inline styles
+  responsiveButton: {
+    padding: '1rem 2rem', // Base style
+    fontSize: '1.1rem', // Base style
+  },
+  responsiveCtaButton: {
+      padding: '1.2rem 2.5rem',
+      fontSize: '1.1rem',
   },
 
   // HERO SECTION WITH BACKGROUND IMAGE
@@ -351,7 +487,7 @@ const styles = {
     margin: '0 auto',
     padding: '0 2rem',
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr 1fr', // Desktop Default
     gap: '4rem',
     alignItems: 'center',
     position: 'relative',
@@ -529,14 +665,6 @@ const styles = {
     position: 'relative'
   },
   
-  serviceIcon: {
-    fontSize: '3rem',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    borderRadius: '50%',
-    padding: '1rem',
-    backdropFilter: 'blur(10px)'
-  },
-  
   serviceContent: {
     padding: '2rem'
   },
@@ -569,18 +697,6 @@ const styles = {
     fontSize: '0.85rem',
     fontWeight: '500',
     border: '1px solid #e9ecef'
-  },
-  
-  serviceButton: {
-    backgroundColor: 'transparent',
-    color: '#D4AF37',
-    border: '2px solid #D4AF37',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '6px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    width: '100%'
   },
 
   // CTA SECTION
@@ -638,30 +754,11 @@ const styles = {
   },
   
   ctaPrimaryButton: {
-    backgroundColor: '#D4AF37',
-    color: '#1a1a1a',
-    border: 'none',
-    padding: '1.2rem 2.5rem',
-    borderRadius: '8px',
-    fontSize: '1.1rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
-    animation: 'pulse 2s infinite'
+    // This style is inherited from primaryButton, just for documentation
   },
   
   ctaSecondaryButton: {
-    backgroundColor: 'transparent',
-    color: '#D4AF37',
-    border: '2px solid #D4AF37',
-    padding: '1.2rem 2.5rem',
-    borderRadius: '8px',
-    fontSize: '1.1rem',
-    fontWeight: '600',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-    backdropFilter: 'blur(10px)'
+    // This style is inherited from secondaryButton, just for documentation
   },
 
   // WHY CHOOSE US SECTION WITH IMAGES

@@ -42,14 +42,14 @@ const ContactPage = () => {
     <Layout>
       <div style={styles.container}>
         {/* HERO SECTION */}
-        <section style={styles.hero}>
+        <section style={styles.hero} className="hero-responsive">
           <div style={styles.heroOverlay}></div>
-          <div style={styles.heroContent}>
+          <div style={styles.heroContent} className="content-responsive">
             <div style={styles.heroText}>
-              <h1 style={styles.heroTitle}>
+              <h1 style={styles.heroTitle} className="hero-title-responsive">
                 Get In <span style={styles.highlight}>Touch</span>
               </h1>
-              <p style={styles.heroSubtitle}>
+              <p style={styles.heroSubtitle} className="hero-subtitle-responsive">
                 Ready for your next transformation? Reach out to us — we're here to help you look and feel your best.
               </p>
             </div>
@@ -57,14 +57,14 @@ const ContactPage = () => {
         </section>
 
         {/* CONTACT MAIN SECTION */}
-        <section style={styles.contactSection}>
-          <div style={styles.contactContainer}>
-            <div style={styles.contactGrid}>
+        <section style={styles.contactSection} className="section-responsive">
+          <div style={styles.contactContainer} className="container-responsive">
+            <div style={styles.contactGrid} className="contact-grid-responsive">
               {/* Contact Information Side */}
-              <div style={styles.infoSide}>
+              <div style={styles.infoSide} className="info-side-responsive">
                 <div style={styles.infoCard}>
-                  <h2 style={styles.infoTitle}>Contact Information</h2>
-                  <p style={styles.infoDescription}>
+                  <h2 style={styles.infoTitle} className="section-title-responsive">Contact Information</h2>
+                  <p style={styles.infoDescription} className="description-responsive">
                     We're here to assist you with any questions about our services, pricing, or availability. 
                     Don't hesitate to reach out — we typically respond within a few hours.
                   </p>
@@ -73,16 +73,16 @@ const ContactPage = () => {
                     {/* Phone */}
                     <div style={styles.contactMethod}>
                       <div style={styles.methodImage}>
-                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1563013546-7e5c7b6dc223?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1563013546-7e5c7b6dc223?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="image-container-responsive">
                           <div style={styles.imageOverlay}></div>
-                          <div style={styles.methodContent}>
+                          <div style={styles.methodContent} className="method-content-responsive">
                             <h3 style={styles.methodTitle}>Phone / Text</h3>
                             <p style={styles.methodDescription}>
                               Preferred method for quick responses and appointment scheduling
                             </p>
                             <div style={styles.contactDetail}>
                               <span style={styles.detailLabel}>Direct Line:</span>
-                              <a href="tel:9133130064" style={styles.detailValue}>(913) 313-0064</a>
+                              <a href="tel:9133130064" style={styles.detailValue} className="detail-value-responsive">(913) 313-0064</a>
                             </div>
                           </div>
                         </div>
@@ -92,16 +92,16 @@ const ContactPage = () => {
                     {/* Email */}
                     <div style={styles.contactMethod}>
                       <div style={styles.methodImage}>
-                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1565688534245-05d6b5be184a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="image-container-responsive">
                           <div style={styles.imageOverlay}></div>
-                          <div style={styles.methodContent}>
+                          <div style={styles.methodContent} className="method-content-responsive">
                             <h3 style={styles.methodTitle}>Email</h3>
                             <p style={styles.methodDescription}>
                               Send us detailed inquiries or service questions
                             </p>
                             <div style={styles.contactDetail}>
                               <span style={styles.detailLabel}>Email Address:</span>
-                              <a href="mailto:cutculturekc@gmail.com" style={styles.detailValue}>cutculturekc@gmail.com</a>
+                              <a href="mailto:cutculturekc@gmail.com" style={styles.detailValue} className="detail-value-responsive">cutculturekc@gmail.com</a>
                             </div>
                           </div>
                         </div>
@@ -111,16 +111,16 @@ const ContactPage = () => {
                     {/* Location */}
                     <div style={styles.contactMethod}>
                       <div style={styles.methodImage}>
-                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1556740758-90de374c12ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="image-container-responsive">
                           <div style={styles.imageOverlay}></div>
-                          <div style={styles.methodContent}>
+                          <div style={styles.methodContent} className="method-content-responsive">
                             <h3 style={styles.methodTitle}>Location</h3>
                             <p style={styles.methodDescription}>
                               Visit our modern barbershop in the heart of Kansas City
                             </p>
                             <div style={styles.contactDetail}>
                               <span style={styles.detailLabel}>Address:</span>
-                              <span style={styles.detailValue}>Kansas City, KS</span>
+                              <span style={styles.detailValue} className="detail-value-responsive">Kansas City, KS</span>
                             </div>
                           </div>
                         </div>
@@ -130,9 +130,9 @@ const ContactPage = () => {
                     {/* Business Hours */}
                     <div style={styles.contactMethod}>
                       <div style={styles.methodImage}>
-                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+                        <div style={{...styles.imageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="image-container-responsive">
                           <div style={styles.imageOverlay}></div>
-                          <div style={styles.methodContent}>
+                          <div style={styles.methodContent} className="method-content-responsive">
                             <h3 style={styles.methodTitle}>Business Hours</h3>
                             <p style={styles.methodDescription}>
                               Flexible scheduling available to fit your busy lifestyle
@@ -156,15 +156,15 @@ const ContactPage = () => {
               </div>
 
               {/* Contact Form Side */}
-              <div style={styles.formSide}>
-                <div style={styles.formCard}>
-                  <h2 style={styles.formTitle}>Send Us a Message</h2>
-                  <p style={styles.formDescription}>
+              <div style={styles.formSide} className="form-side-responsive">
+                <div style={styles.formCard} className="card-padding-responsive">
+                  <h2 style={styles.formTitle} className="section-title-responsive">Send Us a Message</h2>
+                  <p style={styles.formDescription} className="description-responsive">
                     Have a question or ready to book an appointment? Fill out the form below and we'll get back to you as soon as possible.
                   </p>
 
                   <form onSubmit={handleSubmit} style={styles.contactForm}>
-                    <div style={styles.formRow}>
+                    <div style={styles.formRow} className="form-row-responsive">
                       <div style={styles.inputGroup}>
                         <label style={styles.label}>Full Name *</label>
                         <input
@@ -175,6 +175,7 @@ const ContactPage = () => {
                           style={styles.input}
                           placeholder="Enter your full name"
                           required
+                          className="input-responsive"
                         />
                       </div>
 
@@ -188,11 +189,12 @@ const ContactPage = () => {
                           style={styles.input}
                           placeholder="your@email.com"
                           required
+                          className="input-responsive"
                         />
                       </div>
                     </div>
 
-                    <div style={styles.formRow}>
+                    <div style={styles.formRow} className="form-row-responsive">
                       <div style={styles.inputGroup}>
                         <label style={styles.label}>Phone Number</label>
                         <input
@@ -202,6 +204,7 @@ const ContactPage = () => {
                           onChange={handleInputChange}
                           style={styles.input}
                           placeholder="(555) 123-4567"
+                          className="input-responsive"
                         />
                       </div>
 
@@ -213,6 +216,7 @@ const ContactPage = () => {
                           onChange={handleInputChange}
                           style={styles.select}
                           required
+                          className="input-responsive"
                         >
                           <option value="">Select a subject</option>
                           <option value="appointment">Book Appointment</option>
@@ -234,6 +238,7 @@ const ContactPage = () => {
                         placeholder="Tell us how we can help you..."
                         rows="6"
                         required
+                        className="input-responsive"
                       />
                     </div>
 
@@ -244,6 +249,7 @@ const ContactPage = () => {
                         ...(isSubmitting && styles.submitButtonLoading)
                       }}
                       disabled={isSubmitting}
+                      className="submit-button-responsive"
                     >
                       {isSubmitting ? 'Sending Message...' : 'Send Message'}
                     </button>
@@ -252,19 +258,19 @@ const ContactPage = () => {
 
                 {/* Quick Actions */}
                 <div style={styles.quickActions}>
-                  <div style={styles.actionCard}>
-                    <h3 style={styles.actionTitle}>Quick Connect</h3>
+                  <div style={styles.actionCard} className="card-padding-responsive">
+                    <h3 style={styles.actionTitle} className="action-title-responsive">Quick Connect</h3>
                     <p style={styles.actionDescription}>
                       Prefer to connect directly? Use these quick options.
                     </p>
-                    <div style={styles.actionButtons}>
-                      <a href="tel:9133130064" style={styles.actionButtonPrimary}>
+                    <div style={styles.actionButtons} className="action-buttons-responsive">
+                      <a href="tel:9133130064" style={styles.actionButtonPrimary} className="action-button-responsive action-button-primary-responsive">
                         Call Now
                       </a>
-                      <a href="sms:9133130064" style={styles.actionButtonSecondary}>
+                      <a href="sms:9133130064" style={styles.actionButtonSecondary} className="action-button-responsive">
                         Send Text
                       </a>
-                      <a href="mailto:cutculturekc@gmail.com" style={styles.actionButtonSecondary}>
+                      <a href="mailto:cutculturekc@gmail.com" style={styles.actionButtonSecondary} className="action-button-responsive">
                         Email Us
                       </a>
                     </div>
@@ -276,11 +282,11 @@ const ContactPage = () => {
         </section>
 
         {/* MAP & LOCATION SECTION */}
-        <section style={styles.mapSection}>
-          <div style={styles.mapContainer}>
+        <section style={styles.mapSection} className="section-responsive">
+          <div style={styles.mapContainer} className="container-responsive">
             <div style={styles.mapContent}>
-              <h2 style={styles.mapTitle}>Visit Our Barbershop</h2>
-              <p style={styles.mapDescription}>
+              <h2 style={styles.mapTitle} className="section-title-responsive">Visit Our Barbershop</h2>
+              <p style={styles.mapDescription} className="description-responsive">
                 Experience the Cut Culture difference in person. Our modern, comfortable space is designed 
                 to provide you with the ultimate grooming experience.
               </p>
@@ -288,16 +294,16 @@ const ContactPage = () => {
               <div style={styles.locationDetails}>
                 <div style={styles.locationCard}>
                   <div style={styles.locationImage}>
-                    <div style={{...styles.locationImageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                    <div style={{...styles.locationImageContainer, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="location-image-responsive">
                       <div style={styles.locationOverlay}></div>
-                      <div style={styles.locationText}>
-                        <h3 style={styles.locationTitle}>Cut Culture Barbershop</h3>
+                      <div style={styles.locationText} className="location-text-responsive">
+                        <h3 style={styles.locationTitle} className="location-title-responsive">Cut Culture Barbershop</h3>
                         <p style={styles.locationAddress}>Kansas City, KS</p>
                       </div>
                     </div>
                   </div>
                   
-                  <div style={styles.locationInfo}>
+                  <div style={styles.locationInfo} className="location-info-responsive">
                     <div style={styles.infoItem}>
                       <strong style={styles.infoLabel}>Address:</strong>
                       <span style={styles.infoValue}>Kansas City, Kansas</span>
@@ -322,29 +328,40 @@ const ContactPage = () => {
         </section>
 
         {/* CTA SECTION */}
-        <section style={styles.ctaSection}>
+        <section style={styles.ctaSection} className="cta-section-responsive">
           <div style={styles.ctaBackground}></div>
-          <div style={styles.ctaContent}>
-            <h2 style={styles.ctaTitle}>Ready for Your Next Cut?</h2>
-            <p style={styles.ctaText}>
+          <div style={styles.ctaContent} className="content-responsive">
+            <h2 style={styles.ctaTitle} className="cta-title-responsive">Ready for Your Next Cut?</h2>
+            <p style={styles.ctaText} className="cta-text-responsive">
               Don't wait — book your appointment today and experience the premium service that sets Cut Culture apart.
             </p>
-            <div style={styles.ctaButtons}>
-              <a href="tel:9133130064" style={styles.ctaButtonPrimary}>
+            <div style={styles.ctaButtons} className="cta-buttons-responsive">
+              <a href="tel:9133130064" style={styles.ctaButtonPrimary} className="cta-button-responsive">
                 Call to Book:  (913) 313-0064
               </a>
               <button
-    style={styles.ctaButtonSecondary}
-    onClick={() => (window.location.href = "/ServicesPage")}
-  >
-    View Services
-  </button>
+                style={styles.ctaButtonSecondary}
+                className="cta-button-responsive"
+                onClick={() => (window.location.href = "/ServicesPage")}
+              >
+                View Services
+              </button>
             </div>
           </div>
         </section>
       </div>
 
-      {/* Add CSS Animations */}
+      {/* Add CSS Animations and Media Queries for Responsiveness */}
+      <style jsx global>{`
+        /* Global CSS for Box Sizing and Overflow Fix */
+        html, body, #__next {
+          overflow-x: hidden;
+        }
+        * {
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+      `}</style>
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -431,6 +448,158 @@ const ContactPage = () => {
 
         .input:focus, .select:focus, .textarea:focus {
           animation: glow 2s infinite;
+        }
+        
+        /* --- MOBILE RESPONSIVENESS (Media Queries: Max width 768px) --- */
+        @media (max-width: 768px) {
+          
+          /* GENERAL */
+          .section-responsive {
+            padding: 3rem 0 !important;
+          }
+
+          .container-responsive {
+            padding: 0 1rem !important;
+          }
+
+          .content-responsive {
+             padding: 0 1rem !important;
+          }
+          
+          .section-title-responsive {
+            font-size: 2rem !important;
+          }
+
+          .description-responsive {
+            font-size: 1rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+
+          /* HERO SECTION */
+          .hero-responsive {
+            min-height: 35vh !important;
+            padding: 2rem 0 !important;
+          }
+
+          .hero-title-responsive {
+            font-size: 2.2rem !important;
+          }
+          
+          .hero-subtitle-responsive {
+             font-size: 1rem !important;
+          }
+
+          /* CONTACT MAIN SECTION */
+          .contact-grid-responsive {
+            grid-template-columns: 1fr !important; /* Stack columns */
+            gap: 2rem !important;
+          }
+          
+          /* INFO SIDE */
+          .info-side-responsive {
+             order: 2; /* Move info side below form side on mobile */
+          }
+          
+          .image-container-responsive {
+             height: 150px !important;
+          }
+          
+          .method-content-responsive {
+             padding: 1rem !important;
+          }
+          
+          .detail-value-responsive {
+             font-size: 1rem !important;
+             overflow-wrap: break-word; /* Handle long emails/phone numbers */
+          }
+          
+          /* FORM SIDE */
+          .form-side-responsive {
+             order: 1; /* Keep form side on top */
+          }
+          
+          .card-padding-responsive {
+             padding: 1.5rem !important;
+          }
+
+          .form-row-responsive {
+            grid-template-columns: 1fr !important; /* Stack inputs */
+            gap: 1rem !important;
+          }
+
+          .input-responsive {
+            padding: 0.8rem !important;
+            font-size: 0.9rem !important;
+          }
+          
+          .submit-button-responsive {
+             padding: 1rem 1.5rem !important;
+             font-size: 1rem !important;
+          }
+          
+          .action-title-responsive {
+             font-size: 1.25rem !important;
+          }
+          
+          .action-buttons-responsive {
+             flex-direction: row; /* Keep action buttons side-by-side if they fit */
+             flex-wrap: wrap;
+             gap: 0.5rem !important;
+          }
+          
+          .action-button-responsive {
+             flex: 1 1 45%; /* Allow wrapping with some width flexibility */
+             padding: 0.8rem 1rem !important;
+             font-size: 0.9rem !important;
+          }
+          
+          .action-button-primary-responsive {
+             order: -1; /* Keep call button first */
+          }
+
+          /* MAP SECTION */
+          .location-image-responsive {
+             height: 200px !important;
+          }
+          
+          .location-text-responsive {
+             padding: 1rem !important;
+          }
+          
+          .location-title-responsive {
+             font-size: 1.5rem !important;
+          }
+
+          .location-info-responsive {
+             padding: 1.5rem !important;
+             gap: 0.75rem !important;
+          }
+
+          /* CTA SECTION */
+          .cta-section-responsive {
+             padding: 3rem 0 !important;
+          }
+          
+          .cta-title-responsive {
+             font-size: 2rem !important;
+             margin-bottom: 1rem !important;
+          }
+          
+          .cta-text-responsive {
+             font-size: 1rem !important;
+             margin-bottom: 1.5rem !important;
+          }
+          
+          .cta-buttons-responsive {
+             flex-direction: column !important;
+             gap: 0.75rem !important;
+          }
+          
+          .cta-button-responsive {
+             width: 100% !important;
+             padding: 1rem 1.5rem !important;
+             font-size: 1rem !important;
+          }
         }
       `}</style>
     </Layout>

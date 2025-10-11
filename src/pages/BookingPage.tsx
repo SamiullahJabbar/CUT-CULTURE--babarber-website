@@ -66,27 +66,27 @@ const BookingPage = () => {
     <Layout>
       <div style={styles.container}>
         {/* HERO SECTION */}
-        <section style={styles.hero}>
+        <section style={styles.hero} className="hero-responsive">
           <div style={styles.heroOverlay}></div>
           <div style={styles.heroContent}>
             <div style={styles.heroText}>
-              <h1 style={styles.heroTitle}>
+              <h1 style={styles.heroTitle} className="hero-title-responsive">
                 Book Your <span style={styles.highlight}>Appointment</span>
               </h1>
-              <p style={styles.heroSubtitle}>
+              <p style={styles.heroSubtitle} className="hero-subtitle-responsive">
                 Skip the wait. Book online and secure your spot through our website. 
                 Easy scheduling, real-time availability, hassle-free.
               </p>
-              <div style={styles.heroFeatures}>
-                <div style={styles.feature}>
+              <div style={styles.heroFeatures} className="hero-features-responsive">
+                <div style={styles.feature} className="feature-responsive">
                   <div style={styles.featureIcon}></div>
                   <span>Quick Booking</span>
                 </div>
-                <div style={styles.feature}>
+                <div style={styles.feature} className="feature-responsive">
                   <div style={styles.featureIcon}></div>
                   <span>Real-time Availability</span>
                 </div>
-                <div style={styles.feature}>
+                <div style={styles.feature} className="feature-responsive">
                   <div style={styles.featureIcon}></div>
                   <span>Secure Your Spot</span>
                 </div>
@@ -96,27 +96,27 @@ const BookingPage = () => {
         </section>
 
         {/* BOOKING FORM SECTION */}
-        <section style={styles.bookingSection}>
+        <section style={styles.bookingSection} className="section-responsive">
           <div style={styles.bookingContainer}>
-            <div style={styles.bookingHeader}>
-              <h2 style={styles.bookingTitle}>Schedule Your Appointment</h2>
+            <div style={styles.bookingHeader} className="section-header-responsive">
+              <h2 style={styles.bookingTitle} className="section-title-responsive">Schedule Your Appointment</h2>
               <p style={styles.bookingSubtitle}>
                 Fill out the form below to book your preferred time slot
               </p>
             </div>
 
-            <div style={styles.bookingContent}>
+            <div style={styles.bookingContent} className="booking-content-responsive">
               {/* Left Side - Form */}
-              <div style={styles.formContainer}>
+              <div style={styles.formContainer} className="form-container-responsive">
                 <form onSubmit={handleSubmit} style={styles.bookingForm}>
                   {/* Service Selection */}
-                  <div style={styles.formSection}>
-                    <h3 style={styles.sectionTitle}>1. Select Service</h3>
-                    <div style={styles.servicesGrid}>
+                  <div style={styles.formSection} className="form-section-responsive">
+                    <h3 style={styles.sectionTitle} className="step-title-responsive">1. Select Service</h3>
+                    <div style={styles.servicesGrid} className="services-grid-responsive">
                       {services.map((service) => (
                         <div
                           key={service.id}
-                          className="service-option" // Keep className for animation
+                          className={`service-option ${selectedService === service.id ? 'service-option-selected' : ''}`} // Keep className for animation
                           style={{
                             ...styles.serviceOption,
                             ...(selectedService === service.id && styles.serviceOptionSelected),
@@ -126,8 +126,8 @@ const BookingPage = () => {
                           onMouseEnter={() => setHoverService(service.id)} // FIX: Set hover state
                           onMouseLeave={() => setHoverService(null)} // FIX: Reset hover state
                         >
-                          <div style={styles.serviceInfo}>
-                            <div style={styles.serviceName}>{service.name}</div>
+                          <div style={styles.serviceInfo} className="service-info-responsive">
+                            <div style={styles.serviceName} className="service-name-responsive">{service.name}</div>
                             <div style={styles.serviceDetails}>
                               <span style={styles.servicePrice}>{service.price}</span>
                               <span style={styles.serviceDuration}>{service.duration}</span>
@@ -142,20 +142,20 @@ const BookingPage = () => {
                   </div>
 
                   {/* Date & Time Selection */}
-                  <div style={styles.formSection}>
-                    <h3 style={styles.sectionTitle}>2. Select Date & Time</h3>
-                    <div style={styles.datetimeGrid}>
-                      <div style={styles.dateSelection}>
+                  <div style={styles.formSection} className="form-section-responsive">
+                    <h3 style={styles.sectionTitle} className="step-title-responsive">2. Select Date & Time</h3>
+                    <div style={styles.datetimeGrid} className="datetime-grid-responsive">
+                      <div style={styles.dateSelection} className="date-selection-responsive">
                         <label style={styles.label}>Preferred Date</label>
-                        <div style={styles.dateOptions}>
+                        <div style={styles.dateOptions} className="date-options-responsive">
                           {getNextSevenDays().map((date) => {
                             const dateObj = new Date(date);
-                            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' }); // FIX: Only show full weekday name
+                            const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'short' }); // FIX: Use short weekday name for mobile
                             
                             return (
                               <div
                                 key={date}
-                                className="date-option" // Keep className for animation
+                                className={`date-option ${selectedDate === date ? 'date-option-selected' : ''}`} // Keep className for animation
                                 style={{
                                   ...styles.dateOption,
                                   ...(selectedDate === date && styles.dateOptionSelected),
@@ -165,21 +165,21 @@ const BookingPage = () => {
                                 onMouseEnter={() => setHoverDate(date)} // FIX: Set hover state
                                 onMouseLeave={() => setHoverDate(null)} // FIX: Reset hover state
                               >
-                                {/* FIX: Only Day Name is displayed */}
-                                <div style={styles.dayNameOnly}>{dayName}</div>
+                                {/* FIX: Short Day Name is displayed */}
+                                <div style={styles.dayNameOnly} className="day-name-only-responsive">{dayName}</div>
                               </div>
                             );
                           })}
                         </div>
                       </div>
 
-                      <div style={styles.timeSelection}>
+                      <div style={styles.timeSelection} className="time-selection-responsive">
                         <label style={styles.label}>Preferred Time</label>
-                        <div style={styles.timeOptions}>
+                        <div style={styles.timeOptions} className="time-options-responsive">
                           {timeSlots.map((time) => (
                             <div
                               key={time}
-                              className="time-option" // Keep className for animation
+                              className={`time-option ${selectedTime === time ? 'time-option-selected' : ''}`} // Keep className for animation
                               style={{
                                 ...styles.timeOption,
                                 ...(selectedTime === time && styles.timeOptionSelected),
@@ -198,9 +198,9 @@ const BookingPage = () => {
                   </div>
 
                   {/* Personal Information */}
-                  <div style={styles.formSection}>
-                    <h3 style={styles.sectionTitle}>3. Your Information</h3>
-                    <div style={styles.personalInfoGrid}>
+                  <div style={styles.formSection} className="form-section-responsive">
+                    <h3 style={styles.sectionTitle} className="step-title-responsive">3. Your Information</h3>
+                    <div style={styles.personalInfoGrid} className="personal-info-grid-responsive">
                       <div style={styles.inputGroup}>
                         <label style={styles.label}>Full Name *</label>
                         <input
@@ -257,6 +257,7 @@ const BookingPage = () => {
                   <button 
                     type="submit" 
                     style={styles.submitButton}
+                    className="submit-button"
                     disabled={!selectedService || !selectedDate || !selectedTime || !formData.name || !formData.phone}
                   >
                     Confirm Booking
@@ -265,9 +266,9 @@ const BookingPage = () => {
               </div>
 
               {/* Right Side - Summary & Info */}
-              <div style={styles.summaryContainer}>
+              <div style={styles.summaryContainer} className="summary-container-responsive">
                 <div className="summary-card" style={styles.summaryCard}>
-                  <h3 style={styles.summaryTitle}>Appointment Summary</h3>
+                  <h3 style={styles.summaryTitle} className="summary-title-responsive">Appointment Summary</h3>
                   
                   {selectedService ? (
                     <div style={styles.summaryContent}>
@@ -280,11 +281,10 @@ const BookingPage = () => {
                       
                       <div style={styles.summaryItem}>
                         <span style={styles.summaryLabel}>Date:</span>
-                        <span style={styles.summaryValue}>
+                        <span style={styles.summaryValue} className="summary-date-value-responsive">
                           {selectedDate ? new Date(selectedDate).toLocaleDateString('en-US', { 
-                            weekday: 'long', 
-                            year: 'numeric', 
-                            month: 'long', 
+                            weekday: 'short', // Shortened for mobile
+                            month: 'short', // Shortened for mobile
                             day: 'numeric' 
                           }) : 'Not selected'}
                         </span>
@@ -317,10 +317,10 @@ const BookingPage = () => {
                 </div>
 
                 {/* Contact Info */}
-                <div style={styles.infoCard}>
-                  <h4 style={styles.infoTitle}>Need Help?</h4>
-                  <div style={styles.contactInfo}>
-                    <div style={styles.contactItem}>
+                <div style={styles.infoCard} className="info-card-responsive">
+                  <h4 style={styles.infoTitle} className="info-title-responsive">Need Help?</h4>
+                  <div style={styles.contactInfo} className="contact-info-responsive">
+                    <div style={styles.contactItem} className="contact-item-responsive">
                       <div style={styles.contactIcon}>📞</div>
                       <div>
                         <div style={styles.contactLabel}>Call Us</div>
@@ -328,7 +328,7 @@ const BookingPage = () => {
                       </div>
                     </div>
                     
-                    <div style={styles.contactItem}>
+                    <div style={styles.contactItem} className="contact-item-responsive">
                       <div style={styles.contactIcon}>⏰</div>
                       <div>
                         <div style={styles.contactLabel}>Business Hours</div>
@@ -336,7 +336,7 @@ const BookingPage = () => {
                       </div>
                     </div>
                     
-                    <div style={styles.contactItem}>
+                    <div style={styles.contactItem} className="contact-item-responsive">
                       <div style={styles.contactIcon}>📍</div>
                       <div>
                         <div style={styles.contactLabel}>Location</div>
@@ -347,8 +347,8 @@ const BookingPage = () => {
                 </div>
 
                 {/* Policies */}
-                <div style={styles.policiesCard}>
-                  <h4 style={styles.policiesTitle}>Booking Policies</h4>
+                <div style={styles.policiesCard} className="info-card-responsive">
+                  <h4 style={styles.policiesTitle} className="info-title-responsive">Booking Policies</h4>
                   <ul style={styles.policiesList}>
                     <li style={styles.policyItem}>24-hour cancellation notice required</li>
                     <li style={styles.policyItem}>Arrive 5 minutes before your appointment</li>
@@ -362,29 +362,40 @@ const BookingPage = () => {
         </section>
 
         {/* CTA SECTION */}
-        <section style={styles.ctaSection}>
+        <section style={styles.ctaSection} className="cta-section-responsive">
           <div style={styles.ctaBackground}></div>
           <div style={styles.ctaContent}>
-            <h2 style={styles.ctaTitle}>Prefer to Call?</h2>
+            <h2 style={styles.ctaTitle} className="cta-title-responsive">Prefer to Call?</h2>
             <p style={styles.ctaText}>
               Speak directly with our team to schedule your appointment
             </p>
-            <div style={styles.ctaButtons}>
-              <a href="tel:9133130064" style={styles.ctaButtonPrimary}>
+            <div style={styles.ctaButtons} className="cta-buttons-responsive">
+              <a href="tel:9133130064" style={styles.ctaButtonPrimary} className="cta-button-responsive">
                 Call Now: (913) 313-0064
               </a>
-              <button
-    style={styles.ctaButtonSecondary}
-    onClick={() => (window.location.href = "/")}
-  >
-    View Our Location
-  </button>
+              {/* <button
+                style={styles.ctaButtonSecondary}
+                className="cta-button-responsive"
+                onClick={() => (window.location.href = "/")}
+              >
+                View Our Location
+              </button> */}
             </div>
           </div>
         </section>
       </div>
 
-      {/* Add CSS Animations - Hover styles removed from here to fix the error */}
+      {/* Add CSS Animations and Media Queries */}
+      <style jsx global>{`
+        /* Global CSS for Box Sizing and Overflow Fix */
+        html, body, #__next {
+          overflow-x: hidden;
+        }
+        * {
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+      `}</style>
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -440,18 +451,19 @@ const BookingPage = () => {
           }
         }
 
-        /* Hover styles ko yahaan se hata diya hai, ab woh onMouseEnter/onMouseLeave se manage honge */
-
         .service-option {
           animation: fadeInUp 0.6s ease-out;
+          transition: all 0.3s ease; /* Ensure transition for all elements */
         }
 
         .date-option {
           animation: slideInLeft 0.8s ease-out;
+          transition: all 0.3s ease;
         }
 
         .time-option {
           animation: slideInRight 0.8s ease-out;
+          transition: all 0.3s ease;
         }
 
         .summary-card {
@@ -463,7 +475,167 @@ const BookingPage = () => {
         }
 
         .service-option-selected {
-          animation: glow 2s infinite;
+          /* animation: glow 2s infinite; Removed to prevent conflict with hover and focus on mobile */
+        }
+
+        /* --- MOBILE RESPONSIVENESS (Media Queries: Max width 768px) --- */
+
+        @media (max-width: 768px) {
+          
+          /* GENERAL SECTION STYLES */
+          .section-responsive {
+            padding: 3rem 0 !important; /* Smaller vertical padding */
+          }
+
+          .section-header-responsive {
+            margin-bottom: 2rem !important;
+          }
+
+          .section-title-responsive {
+            font-size: 2rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          .step-title-responsive {
+             font-size: 1.2rem !important;
+          }
+
+          /* HERO SECTION */
+          .hero-responsive {
+            min-height: 40vh !important;
+            padding: 3rem 0 !important;
+          }
+
+          .hero-title-responsive {
+            font-size: 2.5rem !important;
+          }
+
+          .hero-subtitle-responsive {
+            font-size: 1rem !important;
+          }
+          
+          .hero-features-responsive {
+             gap: 1.5rem !important;
+          }
+          
+          .feature-responsive span {
+             font-size: 1rem !important;
+          }
+
+          /* BOOKING CONTENT */
+          .booking-content-responsive {
+            grid-template-columns: 1fr !important; /* Stack form and summary */
+            gap: 2rem !important;
+          }
+          
+          .form-container-responsive {
+             padding: 1.5rem !important; /* Smaller padding */
+          }
+          
+          .form-section-responsive {
+             padding-bottom: 1.5rem !important;
+             gap: 1rem !important;
+          }
+          
+          /* SERVICE SELECTION */
+          .service-option {
+             padding: 1rem !important;
+          }
+          
+          .service-name-responsive {
+             font-size: 1rem !important;
+          }
+          
+          /* DATETIME SELECTION */
+          .datetime-grid-responsive {
+             grid-template-columns: 1fr !important; /* Stack date and time */
+             gap: 1.5rem !important;
+          }
+
+          .date-options-responsive {
+             grid-template-columns: repeat(4, 1fr) !important; /* Keep 4 columns */
+             gap: 0.5rem !important;
+          }
+
+          .time-options-responsive {
+             grid-template-columns: repeat(3, 1fr) !important; /* Keep 3 columns */
+             max-height: 150px !important;
+          }
+          
+          .day-name-only-responsive {
+             font-size: 0.9rem !important; /* Smaller font for short weekday name */
+          }
+          
+          .time-option {
+             font-size: 0.85rem !important;
+             padding: 0.6rem 0.4rem !important;
+          }
+          
+          /* PERSONAL INFO */
+          .personal-info-grid-responsive {
+             grid-template-columns: 1fr !important; /* Single column */
+             gap: 1rem !important;
+          }
+          
+          .input, .textarea {
+             padding: 0.75rem !important;
+             font-size: 0.95rem !important;
+          }
+          
+          /* SUBMIT BUTTON */
+          .submit-button {
+             padding: 1rem 1.5rem !important;
+             font-size: 1rem !important;
+          }
+          
+          /* SUMMARY */
+          .summary-container-responsive {
+             gap: 1.5rem !important;
+          }
+          
+          .summary-card, .info-card-responsive {
+             padding: 1.5rem !important;
+          }
+          
+          .summary-title-responsive, .info-title-responsive {
+             font-size: 1.1rem !important;
+             margin-bottom: 1rem !important;
+          }
+
+          .summary-date-value-responsive {
+             font-size: 0.95rem !important; /* Smaller date format value */
+          }
+          
+          /* CONTACT INFO */
+          .contact-info-responsive {
+             gap: 1rem !important;
+          }
+          
+          .contact-item-responsive {
+             align-items: center !important;
+          }
+          
+          .contact-icon {
+             width: 35px !important;
+             height: 35px !important;
+             font-size: 1rem !important;
+          }
+          
+          /* CTA SECTION */
+          .cta-title-responsive {
+             font-size: 2rem !important;
+          }
+
+          .cta-buttons-responsive {
+             flex-direction: column;
+             gap: 0.75rem !important;
+          }
+          
+          .cta-button-responsive {
+             width: 100% !important;
+             padding: 1rem 1.5rem !important;
+             font-size: 1rem !important;
+          }
         }
       `}</style>
     </Layout>

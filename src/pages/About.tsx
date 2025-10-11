@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'; // useState को वापस लाना ज़रूरी है
 import Layout from '../components/HeaderFooter';
+import ai2 from '../assets/images/a2.jpeg';
 
 // Define the hover styles once outside the component
 const hoverStyles = {
@@ -42,14 +43,14 @@ const AboutPage = () => {
         onMouseLeave={onMouseLeave} 
       >
         {/* HERO SECTION */}
-        <section style={styles.hero}>
+        <section style={styles.hero} className="hero-responsive">
           <div style={styles.heroOverlay}></div>
-          <div style={styles.heroContent}>
+          <div style={styles.heroContent} className="hero-content-responsive">
             <div style={styles.heroText}>
-              <h1 style={styles.heroTitle}>
+              <h1 style={styles.heroTitle} className="hero-title-responsive">
                 About <span style={styles.highlight}>Cut Culture</span>
               </h1>
-              <p style={styles.heroSubtitle}>
+              <p style={styles.heroSubtitle} className="hero-subtitle-responsive">
                 Where style meets community, and every cut tells a story of confidence and culture.
               </p>
             </div>
@@ -57,19 +58,19 @@ const AboutPage = () => {
         </section>
 
         {/* FOUNDER STORY SECTION */}
-        <section style={styles.storySection}>
-          <div style={styles.storyContent}>
+        <section style={styles.storySection} className="section-responsive">
+          <div style={styles.storyContent} className="story-content-responsive">
             <div className="story-image" style={styles.storyImage}>
-              <div style={{...styles.imageCard, backgroundImage: 'url(https://images.unsplash.com/photo-1536520002442-39764a41e987?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'}}>
+              <div style={{...styles.imageCard, backgroundImage: 'url(https://images.unsplash.com/photo-1536520002442-39764a41e987?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'}} className="image-card-responsive">
                 <div style={styles.imageOverlay}></div>
-                <div style={styles.imageText}>
-                  <h3 style={styles.founderName}>Irvin Alcocer</h3>
+                <div style={styles.imageText} className="image-text-responsive">
+                  <h3 style={styles.founderName} className="founder-name-responsive">Irvin Alcocer</h3>
                   <p style={styles.founderTitle}>Founder & Master Barber</p>
                 </div>
               </div>
             </div>
             <div className="story-text" style={styles.storyText}>
-              <h2 style={styles.sectionTitle}>Our Story</h2>
+              <h2 style={styles.sectionTitle} className="section-title-responsive">Our Story</h2>
               <p style={styles.storyParagraph}>
                 Cut Culture was founded in 2025 by Irvin Alcocer, a passionate barber and entrepreneur from Long Beach, California. At just 23 years old, Irvin has already built a strong reputation for precision cuts and a personal touch.
               </p>
@@ -79,7 +80,7 @@ const AboutPage = () => {
               <p style={styles.storyParagraph}>
                 Cut Culture is more than a shop. It's a community built on style and culture.
               </p>
-              <div style={styles.founderStats}>
+              {/* <div style={styles.founderStats} className="founder-stats-responsive">
                 <div style={styles.statItem}>
                   <div style={styles.statNumber}>2+</div>
                   <div style={styles.statLabel}>Years Experience</div>
@@ -92,15 +93,15 @@ const AboutPage = () => {
                   <div style={styles.statNumber}>23</div>
                   <div style={styles.statLabel}>Years Old</div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
 
         {/* MISSION & VISION SECTION */}
-        <section style={styles.missionSection}>
+        <section style={styles.missionSection} className="section-responsive">
           <div style={styles.missionContent}>
-            <div style={styles.missionGrid}>
+            <div style={styles.missionGrid} className="mission-grid-responsive">
               
               {/* Mission Card 1 */}
               <div 
@@ -112,10 +113,10 @@ const AboutPage = () => {
                 onMouseEnter={() => setIsMission1Hovered(true)} // Set state on hover
                 onMouseLeave={() => setIsMission1Hovered(false)} // Reset state on leave
               >
-                <div style={{...styles.missionImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                <div style={{...styles.missionImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="mission-image-responsive">
                   <div style={styles.missionOverlay}></div>
-                  <div style={styles.missionText}>
-                    <h3 style={styles.missionTitle}>Our Mission</h3>
+                  <div style={styles.missionText} className="mission-text-responsive">
+                    <h3 style={styles.missionTitle} className="mission-title-responsive">Our Mission</h3>
                     <p style={styles.missionDescription}>
                       To transform haircuts into confidence-building experiences, where every client leaves feeling empowered and looking their absolute best.
                     </p>
@@ -133,10 +134,10 @@ const AboutPage = () => {
                 onMouseEnter={() => setIsMission2Hovered(true)} // Set state on hover
                 onMouseLeave={() => setIsMission2Hovered(false)} // Reset state on leave
               >
-                <div style={{...styles.missionImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+                <div style={{...styles.missionImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="mission-image-responsive">
                   <div style={styles.missionOverlay}></div>
-                  <div style={styles.missionText}>
-                    <h3 style={styles.missionTitle}>Our Vision</h3>
+                  <div style={styles.missionText} className="mission-text-responsive">
+                    <h3 style={styles.missionTitle} className="mission-title-responsive">Our Vision</h3>
                     <p style={styles.missionDescription}>
                       To create a barbering culture that celebrates individuality, builds community, and sets new standards for excellence in grooming services.
                     </p>
@@ -148,13 +149,13 @@ const AboutPage = () => {
         </section>
 
         {/* VALUES SECTION */}
-        <section style={styles.valuesSection}>
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>Our Values</h2>
+        <section style={styles.valuesSection} className="section-responsive">
+          <div style={styles.sectionHeader} className="section-header-responsive">
+            <h2 style={styles.sectionTitle} className="section-title-responsive">Our Values</h2>
             <p style={styles.sectionSubtitle}>The principles that guide everything we do</p>
           </div>
           
-          <div style={styles.valuesGrid}>
+          <div style={styles.valuesGrid} className="values-grid-responsive">
             {/* Value Card 1 */}
             <div 
               className="value-card" 
@@ -165,7 +166,7 @@ const AboutPage = () => {
               onMouseEnter={() => setHoveredValueCard('precision')} // Set state on hover
               onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
             >
-              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="value-image-responsive">
                 <div style={styles.valueOverlay}></div>
                 <div style={styles.valueContent}>
                   <h3 style={styles.valueTitle}>Precision</h3>
@@ -186,7 +187,7 @@ const AboutPage = () => {
               onMouseEnter={() => setHoveredValueCard('community')} // Set state on hover
               onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
             >
-              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1596728325488-58c87691e9af?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1596728325488-58c87691e9af?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="value-image-responsive">
                 <div style={styles.valueOverlay}></div>
                 <div style={styles.valueContent}>
                   <h3 style={styles.valueTitle}>Community</h3>
@@ -207,7 +208,7 @@ const AboutPage = () => {
               onMouseEnter={() => setHoveredValueCard('excellence')} // Set state on hover
               onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
             >
-              <div style={{...styles.valueImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1677444546739-21b8aad351d4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1677444546739-21b8aad351d4?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="value-image-responsive">
                 <div style={styles.valueOverlay}></div>
                 <div style={styles.valueContent}>
                   <h3 style={styles.valueTitle}>Excellence</h3>
@@ -228,7 +229,7 @@ const AboutPage = () => {
               onMouseEnter={() => setHoveredValueCard('innovation')} // Set state on hover
               onMouseLeave={() => setHoveredValueCard(null)} // Reset state on leave
             >
-              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1598524374912-6b0b0bab43dd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+              <div style={{...styles.valueImage, backgroundImage: 'url(https://images.unsplash.com/photo-1598524374912-6b0b0bab43dd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="value-image-responsive">
                 <div style={styles.valueOverlay}></div>
                 <div style={styles.valueContent}>
                   <h3 style={styles.valueTitle}>Innovation</h3>
@@ -242,71 +243,79 @@ const AboutPage = () => {
         </section>
 
         {/* CULTURE SECTION */}
-        <section style={styles.cultureSection}>
-          <div style={styles.cultureContent}>
-            <div className="culture-text" style={styles.cultureText}>
-              <h2 style={styles.sectionTitle}>The Cut Culture Experience</h2>
-              <div style={styles.cultureFeatures}>
-                <div className="culture-feature" style={styles.cultureFeature}>
-                  
-                  <div>
-                    <h4 style={styles.featureTitle}>Personalized Consultations</h4>
-                    <p style={styles.featureDescription}>
-                      Every service begins with a detailed consultation to understand your style and preferences.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="culture-feature" style={styles.cultureFeature}>
-              
-                  <div>
-                    <h4 style={styles.featureTitle}>Premium Products</h4>
-                    <p style={styles.featureDescription}>
-                      We use only the highest quality grooming products to ensure exceptional results.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="culture-feature" style={styles.cultureFeature}>
-                
-                  <div>
-                    <h4 style={styles.featureTitle}>Master Craftsmanship</h4>
-                    <p style={styles.featureDescription}>
-                      Our barbers are trained in both classic techniques and modern trends.
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="culture-feature" style={styles.cultureFeature}>
-              
-                  <div>
-                    <h4 style={styles.featureTitle}>Community Focus</h4>
-                    <p style={styles.featureDescription}>
-                      We're more than a barbershop - we're a gathering place for the community.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="culture-image" style={styles.cultureImage}>
-              <div style={{...styles.cultureImageCard, backgroundImage: 'url(https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
-                <div style={styles.cultureImageOverlay}></div>
-              </div>
-            </div>
+        <section style={styles.cultureSection} className="section-responsive">
+  <div style={styles.cultureContent} className="culture-content-responsive">
+    {/* Left Side: Text Content */}
+    <div className="culture-text" style={styles.cultureText}>
+      <h2 style={styles.sectionTitle} className="section-title-responsive">
+        The Cut Culture Experience
+      </h2>
+
+      <div style={styles.cultureFeatures}>
+        <div className="culture-feature" style={styles.cultureFeature}>
+          <div>
+            <h4 style={styles.featureTitle}>Personalized Consultations</h4>
+            <p style={styles.featureDescription}>
+              Every service begins with a detailed consultation to understand your style and preferences.
+            </p>
           </div>
-        </section>
+        </div>
+
+        <div className="culture-feature" style={styles.cultureFeature}>
+          <div>
+            <h4 style={styles.featureTitle}>Premium Products</h4>
+            <p style={styles.featureDescription}>
+              We use only the highest quality grooming products to ensure exceptional results.
+            </p>
+          </div>
+        </div>
+
+        <div className="culture-feature" style={styles.cultureFeature}>
+          <div>
+            <h4 style={styles.featureTitle}>Master Craftsmanship</h4>
+            <p style={styles.featureDescription}>
+              Our barbers are trained in both classic techniques and modern trends.
+            </p>
+          </div>
+        </div>
+
+        <div className="culture-feature" style={styles.cultureFeature}>
+          <div>
+            <h4 style={styles.featureTitle}>Community Focus</h4>
+            <p style={styles.featureDescription}>
+              We're more than a barbershop — we're a gathering place for the community.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Side: Image */}
+    <div className="culture-image" style={styles.cultureImage}>
+      <div
+        style={{
+          ...styles.cultureImageCard,
+          backgroundImage: `url(${ai2})`,
+        }}
+        className="culture-image-card-responsive"
+      >
+        <div style={styles.cultureImageOverlay}></div>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* CTA SECTION */}
-        <section style={styles.ctaSection}>
+        <section style={styles.ctaSection} className="cta-section-responsive">
           <div style={styles.ctaBackground}></div>
-          <div style={styles.ctaContent}>
-            <h2 style={styles.ctaTitle}>
+          <div style={styles.ctaContent} className="cta-content-responsive">
+            <h2 style={styles.ctaTitle} className="cta-title-responsive">
               Experience the Culture
             </h2>
             <p style={styles.ctaText}>
               Ready to join the Cut Culture family? Book your appointment and discover why we're more than just a barbershop.
             </p>
-            <div style={styles.ctaButtons}>
+            <div style={styles.ctaButtons} className="cta-buttons-responsive">
   {/* CTA Button - Pulse animation remains in CSS, safe to use */}
   <button
     className="cta-primary-button"
@@ -315,19 +324,29 @@ const AboutPage = () => {
   >
     Book Your Cut
   </button>
-  <button
+  {/* <button
     style={styles.ctaSecondaryButton}
     onClick={() => (window.location.href = "/")}
   >
     Visit Our Shop
-  </button>
+  </button> */}
 </div>
 
           </div>
         </section>
       </div>
 
-      {/* Add CSS Animations - Hover styles removed from here to fix the error */}
+      {/* Add CSS Animations and Media Queries */}
+      <style jsx global>{`
+        /* Global CSS for Box Sizing and Overflow Fix */
+        html, body, #__next {
+          overflow-x: hidden;
+        }
+        * {
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+      `}</style>
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -394,11 +413,138 @@ const AboutPage = () => {
           animation: fadeInUp 0.8s ease-out;
         }
         
-        /* HOVER STYLES REMOVED FROM HERE TO FIX THE NULL ERROR: */
-        /* .value-card:hover, .mission-card:hover, .cta-primary-button:hover rules removed */
-        
         .cta-primary-button:hover {
           animation: pulse 0.5s ease-in-out;
+        }
+
+        /* --- MOBILE RESPONSIVENESS (Media Queries: Max width 768px) --- */
+
+        @media (max-width: 768px) {
+          
+          /* GENERAL SECTION STYLES */
+          .section-responsive {
+            padding: 3rem 0 !important; /* Smaller vertical padding */
+          }
+
+          .section-header-responsive {
+            padding: 0 1.5rem !important;
+            margin-bottom: 2rem !important;
+          }
+
+          .section-title-responsive {
+            font-size: 2rem !important; /* Smaller title */
+            margin-bottom: 1rem !important;
+          }
+          
+          .hero-content-responsive,
+          .story-content-responsive,
+          .culture-content-responsive {
+            grid-template-columns: 1fr !important; /* Force single column stacking */
+            padding: 0 1.5rem !important; /* Smaller horizontal padding */
+            gap: 2rem !important;
+          }
+
+          /* HERO SECTION */
+          .hero-responsive {
+            min-height: 50vh !important; /* Shorter hero */
+          }
+
+          .hero-title-responsive {
+            font-size: 2.5rem !important; /* Smaller title */
+          }
+
+          .hero-subtitle-responsive {
+            font-size: 1rem !important;
+          }
+
+          /* FOUNDER STORY SECTION */
+          .story-content-responsive {
+            grid-template-columns: 1fr !important; /* Stack image and text */
+          }
+
+          .story-image {
+            order: 1; /* Image first on mobile */
+          }
+          
+          .story-text {
+            order: 2; /* Text second on mobile */
+          }
+
+          .image-card-responsive {
+            height: 350px !important; /* Shorter image card */
+          }
+          
+          .founder-name-responsive {
+            font-size: 1.5rem !important;
+          }
+
+          .founder-stats-responsive {
+            flex-direction: column !important; /* Stack stats */
+            gap: 1rem !important;
+          }
+
+          /* MISSION SECTION */
+          .mission-grid-responsive {
+            grid-template-columns: 1fr !important; /* Stack mission cards */
+          }
+          
+          .mission-card {
+            height: 250px !important;
+          }
+
+          .mission-title-responsive {
+            font-size: 1.5rem !important;
+          }
+
+          .mission-text-responsive {
+            padding: 1.5rem !important;
+          }
+
+          /* VALUES SECTION */
+          .values-grid-responsive {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; /* 2 columns for values to save space */
+            gap: 1rem !important;
+          }
+          
+          .value-card {
+             height: 200px !important; /* Shorter value cards */
+          }
+          
+          /* CULTURE SECTION */
+          .culture-content-responsive {
+            grid-template-columns: 1fr !important;
+          }
+
+          .culture-image {
+            order: 1; /* Image first */
+          }
+          
+          .culture-text {
+            order: 2; /* Text second */
+          }
+          
+          .culture-image-card-responsive {
+             height: 300px !important; /* Shorter image card */
+          }
+          
+          /* CTA SECTION */
+          .cta-section-responsive {
+             padding: 3rem 0 !important;
+          }
+          .cta-title-responsive {
+            font-size: 2rem !important;
+          }
+          
+          .cta-buttons-responsive {
+            flex-direction: column !important; /* Stack buttons */
+            gap: 1rem !important;
+          }
+          
+          .cta-buttons-responsive button {
+            width: 90% !important; /* Full width buttons */
+            padding: 1rem 1.5rem !important;
+            font-size: 1rem !important;
+          }
         }
       `}</style>
     </Layout>

@@ -1,19 +1,20 @@
 import React from 'react';
 import Layout from '../components/HeaderFooter';
+import ai5 from '../assets/images/a5.jpeg';
 
 const ServicesPage = () => {
   return (
     <Layout>
       <div style={styles.container}>
         {/* HERO SECTION */}
-        <section style={styles.hero}>
+        <section style={styles.hero} className="hero-responsive">
           <div style={styles.heroOverlay}></div>
           <div style={styles.heroContent}>
             <div style={styles.heroText}>
-              <h1 style={styles.heroTitle}>
+              <h1 style={styles.heroTitle} className="hero-title-responsive">
                 Services & <span style={styles.highlight}>Pricing</span>
               </h1>
-              <p style={styles.heroSubtitle}>
+              <p style={styles.heroSubtitle} className="hero-subtitle-responsive">
                 Premium grooming services at affordable prices. We keep it simple, sharp, and exceptional.
               </p>
             </div>
@@ -21,24 +22,24 @@ const ServicesPage = () => {
         </section>
 
         {/* MAIN SERVICES SECTION */}
-        <section style={styles.servicesSection}>
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>Our Core Services</h2>
+        <section style={styles.servicesSection} className="section-responsive">
+          <div style={styles.sectionHeader} className="section-header-responsive">
+            <h2 style={styles.sectionTitle} className="section-title-responsive">Our Core Services</h2>
             <p style={styles.sectionSubtitle}>Professional grooming services tailored to your style</p>
           </div>
 
-          <div style={styles.servicesGrid}>
+          <div style={styles.servicesGrid} className="services-grid-responsive">
             {/* Service 1 - Haircut */}
-            <div style={styles.serviceCard}>
-              <div style={{...styles.serviceImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+            <div style={styles.serviceCard} className="service-card">
+              <div style={{...styles.serviceImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="service-image-responsive">
                 <div style={styles.serviceOverlay}></div>
-                <div style={styles.servicePrice}>$20</div>
+                <div style={styles.servicePrice} className="service-price">₹20</div>
                 <div style={styles.serviceContent}>
-                  <h3 style={styles.serviceTitle}>Professional Haircut</h3>
-                  <p style={styles.serviceDescription}>
+                  <h3 style={styles.serviceTitle} className="service-title-responsive">Professional Haircut</h3>
+                  <p style={styles.serviceDescription} className="service-description-responsive">
                     Expert haircut with precision styling, including consultation, shampoo, and finishing touches.
                   </p>
-                  <div style={styles.serviceDetails}>
+                  <div style={styles.serviceDetails} className="service-details-responsive">
                     <div style={styles.detailItem}>
                       <span style={styles.detailLabel}>Duration:</span>
                       <span style={styles.detailValue}>30-45 mins</span>
@@ -48,7 +49,7 @@ const ServicesPage = () => {
                       <span style={styles.detailValue}>Style Consultation</span>
                     </div>
                   </div>
-                  <ul style={styles.featuresList}>
+                  <ul style={styles.featuresList} className="features-list-responsive">
                     <li style={styles.featureItem}>Clean fades & sharp lines</li>
                     <li style={styles.featureItem}>Modern & classic styles</li>
                     <li style={styles.featureItem}>Precision cutting</li>
@@ -59,16 +60,16 @@ const ServicesPage = () => {
             </div>
 
             {/* Service 2 - Haircut + Beard */}
-            <div style={styles.serviceCard}>
-              <div style={{...styles.serviceImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1661382028468-38612d62a254?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+            <div style={styles.serviceCard} className="service-card">
+              <div style={{...styles.serviceImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1661382028468-38612d62a254?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="service-image-responsive">
                 <div style={styles.serviceOverlay}></div>
-                <div style={styles.servicePrice}>$25</div>
+                <div style={styles.servicePrice} className="service-price">₹25</div>
                 <div style={styles.serviceContent}>
-                  <h3 style={styles.serviceTitle}>Haircut + Beard Trim</h3>
-                  <p style={styles.serviceDescription}>
+                  <h3 style={styles.serviceTitle} className="service-title-responsive">Haircut + Beard Trim</h3>
+                  <p style={styles.serviceDescription} className="service-description-responsive">
                     Complete grooming package including professional haircut and detailed beard shaping.
                   </p>
-                  <div style={styles.serviceDetails}>
+                  <div style={styles.serviceDetails} className="service-details-responsive">
                     <div style={styles.detailItem}>
                       <span style={styles.detailLabel}>Duration:</span>
                       <span style={styles.detailValue}>45-60 mins</span>
@@ -78,7 +79,7 @@ const ServicesPage = () => {
                       <span style={styles.detailValue}>Beard Oil</span>
                     </div>
                   </div>
-                  <ul style={styles.featuresList}>
+                  <ul style={styles.featuresList} className="features-list-responsive">
                     <li style={styles.featureItem}>Full haircut service</li>
                     <li style={styles.featureItem}>Beard shaping & trimming</li>
                     <li style={styles.featureItem}>Hot towel treatment</li>
@@ -89,16 +90,16 @@ const ServicesPage = () => {
             </div>
 
             {/* Service 3 - Line Up */}
-            <div style={styles.serviceCard}>
-              <div style={{...styles.serviceImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}}>
+            <div style={styles.serviceCard} className="service-card">
+              <div style={{...styles.serviceImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="service-image-responsive">
                 <div style={styles.serviceOverlay}></div>
-                <div style={styles.servicePrice}>$15</div>
+                <div style={styles.servicePrice} className="service-price">₹15</div>
                 <div style={styles.serviceContent}>
-                  <h3 style={styles.serviceTitle}>Signature Line-Up</h3>
-                  <p style={styles.serviceDescription}>
+                  <h3 style={styles.serviceTitle} className="service-title-responsive">Signature Line-Up</h3>
+                  <p style={styles.serviceDescription} className="service-description-responsive">
                     Crisp, clean line-up with razor precision for sharp edges and defined hairline.
                   </p>
-                  <div style={styles.serviceDetails}>
+                  <div style={styles.serviceDetails} className="service-details-responsive">
                     <div style={styles.detailItem}>
                       <span style={styles.detailLabel}>Duration:</span>
                       <span style={styles.detailValue}>20-30 mins</span>
@@ -108,7 +109,7 @@ const ServicesPage = () => {
                       <span style={styles.detailValue}>Razor Work</span>
                     </div>
                   </div>
-                  <ul style={styles.featuresList}>
+                  <ul style={styles.featuresList} className="features-list-responsive">
                     <li style={styles.featureItem}>Razor line-up</li>
                     <li style={styles.featureItem}>Beard line-up</li>
                     <li style={styles.featureItem}>Edge definition</li>
@@ -121,21 +122,21 @@ const ServicesPage = () => {
         </section>
 
         {/* ADD-ONS SECTION */}
-        <section style={styles.addonsSection}>
-          <div style={styles.sectionHeader}>
-            <h2 style={styles.sectionTitle}>Premium Add-Ons</h2>
+        <section style={styles.addonsSection} className="section-responsive">
+          <div style={styles.sectionHeader} className="section-header-responsive">
+            <h2 style={styles.sectionTitle} className="section-title-responsive">Premium Add-Ons</h2>
             <p style={styles.sectionSubtitle}>Enhance your grooming experience with these premium additions</p>
           </div>
 
-          <div style={styles.addonsGrid}>
+          <div style={styles.addonsGrid} className="addons-grid-responsive">
             {/* Add-on 1 */}
-            <div style={styles.addonCard}>
-              <div style={{...styles.addonImage, backgroundImage: 'url(https://www.barberchairllc.com/wp-content/uploads/2021/06/hot-towel-shave.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+            <div style={styles.addonCard} className="addon-card">
+              <div style={{...styles.addonImage, backgroundImage: 'url(https://www.barberchairllc.com/wp-content/uploads/2021/06/hot-towel-shave.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+$5</div>
+                <div style={styles.addonPrice}>+₹5</div>
               </div>
               <div style={styles.addonContent}>
-                <h3 style={styles.addonTitle}>Hot Towel Treatment</h3>
+                <h3 style={styles.addonTitle} className="addon-title-responsive">Hot Towel Treatment</h3>
                 <p style={styles.addonDescription}>
                   Relaxing hot towel service to open pores and prepare skin for a closer, more comfortable shave.
                 </p>
@@ -143,13 +144,13 @@ const ServicesPage = () => {
             </div>
 
             {/* Add-on 2 */}
-            <div style={styles.addonCard}>
-              <div style={{...styles.addonImage, backgroundImage: 'url(https://www.fortythreeco.com/cdn/shop/articles/Dental_Videos_5.png?v=1747160912&width=1500?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+            <div style={styles.addonCard} className="addon-card">
+              <div style={{...styles.addonImage, backgroundImage: 'url(https://www.fortythreeco.com/cdn/shop/articles/Dental_Videos_5.png?v=1747160912&width=1500?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+$5</div>
+                <div style={styles.addonPrice}>+₹5</div>
               </div>
               <div style={styles.addonContent}>
-                <h3 style={styles.addonTitle}>Beard Conditioning</h3>
+                <h3 style={styles.addonTitle} className="addon-title-responsive">Beard Conditioning</h3>
                 <p style={styles.addonDescription}>
                   Deep conditioning treatment with premium oils to soften and nourish your beard.
                 </p>
@@ -157,13 +158,13 @@ const ServicesPage = () => {
             </div>
 
             {/* Add-on 3 */}
-            <div style={styles.addonCard}>
-              <div style={{...styles.addonImage, backgroundImage: 'url(https://www.kelownaspa.ca/cdn/shop/files/istockphoto-1182948519-612x612_2000x.jpg?v=1720207693?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+            <div style={styles.addonCard} className="addon-card">
+              <div style={{...styles.addonImage, backgroundImage: 'url(https://www.kelownaspa.ca/cdn/shop/files/istockphoto-1182948519-612x612_2000x.jpg?v=1720207693?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+$5</div>
+                <div style={styles.addonPrice}>+₹5</div>
               </div>
               <div style={styles.addonContent}>
-                <h3 style={styles.addonTitle}>Scalp Massage</h3>
+                <h3 style={styles.addonTitle} className="addon-title-responsive">Scalp Massage</h3>
                 <p style={styles.addonDescription}>
                   Therapeutic scalp massage to relieve tension and promote healthy hair growth.
                 </p>
@@ -171,13 +172,13 @@ const ServicesPage = () => {
             </div>
 
             {/* Add-on 4 */}
-            <div style={styles.addonCard}>
-              <div style={{...styles.addonImage, backgroundImage: 'url(https://blogs-images.forbes.com/josephdeacetis/files/2019/09/Styling-Close-Up-e1569867110789.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}}>
+            <div style={styles.addonCard} className="addon-card">
+              <div style={{...styles.addonImage, backgroundImage: 'url(https://blogs-images.forbes.com/josephdeacetis/files/2019/09/Styling-Close-Up-e1569867110789.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+$5</div>
+                <div style={styles.addonPrice}>+₹5</div>
               </div>
               <div style={styles.addonContent}>
-                <h3 style={styles.addonTitle}>Premium Styling</h3>
+                <h3 style={styles.addonTitle} className="addon-title-responsive">Premium Styling</h3>
                 <p style={styles.addonDescription}>
                   Advanced styling with premium products for long-lasting hold and exceptional shine.
                 </p>
@@ -187,64 +188,64 @@ const ServicesPage = () => {
         </section>
 
         {/* PRICING TABLE SECTION */}
-        <section style={styles.pricingSection}>
+        <section style={styles.pricingSection} className="section-responsive">
           <div style={styles.pricingContent}>
-            <div style={styles.pricingHeader}>
-              <h2 style={styles.pricingTitle}>Complete Price List</h2>
+            <div style={styles.pricingHeader} className="section-header-responsive">
+              <h2 style={styles.pricingTitle} className="section-title-responsive">Complete Price List</h2>
               <p style={styles.pricingSubtitle}>Simple, transparent pricing for all our services</p>
             </div>
             
-            <div style={styles.pricingTable}>
-              <div style={styles.tableHeader}>
+            <div style={styles.pricingTable} className="pricing-table-responsive pricing-table">
+              <div style={styles.tableHeader} className="table-header-responsive">
                 <div style={styles.tableColumnService}>Service</div>
-                <div style={styles.tableColumnDuration}>Duration</div>
+                <div style={styles.tableColumnDuration} className="table-column-duration-responsive">Duration</div>
                 <div style={styles.tableColumnPrice}>Price</div>
               </div>
               
-              <div style={styles.tableRow}>
-                <div style={styles.tableColumnService}>
+              <div style={styles.tableRow} className="table-row-responsive">
+                <div style={styles.tableColumnService} className="table-column-service-responsive">
                   <strong>Professional Haircut</strong>
                   <div style={styles.serviceNote}>Includes consultation & styling</div>
                 </div>
-                <div style={styles.tableColumnDuration}>30-45 mins</div>
+                <div style={styles.tableColumnDuration} className="table-column-duration-responsive">30-45 mins</div>
                 <div style={styles.tableColumnPrice}>$20</div>
               </div>
               
-              <div style={styles.tableRow}>
-                <div style={styles.tableColumnService}>
+              <div style={styles.tableRow} className="table-row-responsive">
+                <div style={styles.tableColumnService} className="table-column-service-responsive">
                   <strong>Haircut + Beard Trim</strong>
                   <div style={styles.serviceNote}>Complete grooming package</div>
                 </div>
-                <div style={styles.tableColumnDuration}>45-60 mins</div>
+                <div style={styles.tableColumnDuration} className="table-column-duration-responsive">45-60 mins</div>
                 <div style={styles.tableColumnPrice}>$25</div>
               </div>
               
-              <div style={styles.tableRow}>
-                <div style={styles.tableColumnService}>
+              <div style={styles.tableRow} className="table-row-responsive">
+                <div style={styles.tableColumnService} className="table-column-service-responsive">
                   <strong>Signature Line-Up</strong>
                   <div style={styles.serviceNote}>Razor precision edges</div>
                 </div>
-                <div style={styles.tableColumnDuration}>20-30 mins</div>
+                <div style={styles.tableColumnDuration} className="table-column-duration-responsive">20-30 mins</div>
                 <div style={styles.tableColumnPrice}>$15</div>
               </div>
               
-              <div style={styles.tableRow}>
-                <div style={styles.tableColumnService}>
+              <div style={styles.tableRow} className="table-row-responsive">
+                <div style={styles.tableColumnService} className="table-column-service-responsive">
                   <strong>Beard Trim Only</strong>
                   <div style={styles.serviceNote}>Shape & detail work</div>
                 </div>
-                <div style={styles.tableColumnDuration}>15-20 mins</div>
+                <div style={styles.tableColumnDuration} className="table-column-duration-responsive">15-20 mins</div>
                 <div style={styles.tableColumnPrice}>$10</div>
               </div>
               
               <div style={styles.tableDivider}></div>
               
-              <div style={styles.tableRow}>
-                <div style={styles.tableColumnService}>
+              <div style={styles.tableRow} className="table-row-responsive">
+                <div style={styles.tableColumnService} className="table-column-service-responsive">
                   <strong>Add-On Services</strong>
                   <div style={styles.serviceNote}>Enhance any service</div>
                 </div>
-                <div style={styles.tableColumnDuration}>+5-10 mins</div>
+                <div style={styles.tableColumnDuration} className="table-column-duration-responsive">+5-10 mins</div>
                 <div style={styles.tableColumnPrice}>+$5 each</div>
               </div>
             </div>
@@ -258,31 +259,31 @@ const ServicesPage = () => {
         </section>
 
         {/* BOOKING CTA SECTION */}
-        <section style={styles.bookingSection}>
+        <section style={styles.bookingSection} className="booking-section-responsive">
           <div style={styles.bookingBackground}></div>
-          <div style={styles.bookingContent}>
-            <div style={styles.bookingText}>
-              <h2 style={styles.bookingTitle}>Ready for Your Transformation?</h2>
+          <div style={styles.bookingContent} className="booking-content-responsive">
+            <div style={styles.bookingText} className="booking-text-responsive">
+              <h2 style={styles.bookingTitle} className="booking-title-responsive">Ready for Your Transformation?</h2>
               <p style={styles.bookingSubtitle}>
                 Book your appointment today and experience the Cut Culture difference. 
                 Walk-ins welcome, but appointments ensure your preferred time.
               </p>
-              <div style={styles.bookingInfo}>
-                <div style={styles.infoItem}>
+              <div style={styles.bookingInfo} className="booking-info-responsive">
+                <div style={styles.infoItem} className="info-item-responsive">
                   <div style={styles.infoIcon}>⏰</div>
                   <div>
                     <div style={styles.infoTitle}>Business Hours</div>
                     <div style={styles.infoDescription}>Mon-Sat: 9AM-7PM</div>
                   </div>
                 </div>
-                <div style={styles.infoItem}>
+                <div style={styles.infoItem} className="info-item-responsive">
                   <div style={styles.infoIcon}>📞</div>
                   <div>
                     <div style={styles.infoTitle}>Call Us</div>
                     <div style={styles.infoDescription}> (913) 313-0064</div>
                   </div>
                 </div>
-                <div style={styles.infoItem}>
+                <div style={styles.infoItem} className="info-item-responsive">
                   <div style={styles.infoIcon}>📍</div>
                   <div>
                     <div style={styles.infoTitle}>Location</div>
@@ -291,21 +292,36 @@ const ServicesPage = () => {
                 </div>
               </div>
             </div>
-            <div style={styles.bookingActions}>
+            <div style={styles.bookingActions} className="booking-actions-responsive">
   <button
     style={styles.bookingButtonPrimary}
+    className="booking-button-primary"
     onClick={() => (window.location.href = "/BookingPage")}
   >
     Book Appointment
   </button>
-  <button style={styles.bookingButtonSecondary}>Call Now</button>
+  <button style={styles.bookingButtonSecondary} className="booking-button-secondary">Call Now</button>
 </div>
 
           </div>
         </section>
       </div>
 
-      {/* Add CSS Animations */}
+      {/* Add CSS Animations and Media Queries */}
+      <style jsx global>{`
+        /* Global CSS for Box Sizing and Overflow Fix */
+        html, body, #__next {
+          overflow-x: hidden;
+        }
+        * {
+          box-sizing: border-box;
+          max-width: 100%;
+        }
+        /* Fix for list style in feature list */
+        .features-list-responsive li {
+          list-style: none !important;
+        }
+      `}</style>
       <style jsx>{`
         @keyframes fadeInUp {
           from {
@@ -318,25 +334,14 @@ const ServicesPage = () => {
           }
         }
 
-        @keyframes slideInLeft {
+        @keyframes slideInUp {
           from {
             opacity: 0;
-            transform: translateX(-50px);
+            transform: translateY(30px);
           }
           to {
             opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
+            transform: translateY(0);
           }
         }
 
@@ -389,6 +394,140 @@ const ServicesPage = () => {
 
         .booking-button-primary:hover {
           animation: pulse 0.5s ease-in-out;
+        }
+
+        /* --- MOBILE RESPONSIVENESS (Media Queries: Max width 768px) --- */
+
+        @media (max-width: 768px) {
+          
+          /* GENERAL SECTION STYLES */
+          .section-responsive {
+            padding: 3rem 0 !important; /* Smaller vertical padding */
+          }
+
+          .section-header-responsive {
+            padding: 0 1.5rem !important;
+            margin-bottom: 2rem !important;
+          }
+
+          .section-title-responsive {
+            font-size: 2rem !important; /* Smaller title */
+            margin-bottom: 1rem !important;
+          }
+          
+          /* HERO SECTION */
+          .hero-responsive {
+            min-height: 40vh !important;
+          }
+
+          .hero-title-responsive {
+            font-size: 2.5rem !important;
+          }
+
+          .hero-subtitle-responsive {
+            font-size: 1rem !important;
+          }
+
+          /* CORE SERVICES SECTION */
+          .services-grid-responsive {
+            grid-template-columns: 1fr !important; /* Stack service cards */
+            padding: 0 1rem !important;
+          }
+
+          .service-image-responsive {
+            height: 300px !important; /* Shorter image card */
+          }
+          
+          .service-title-responsive {
+             font-size: 1.5rem !important;
+          }
+          
+          .service-description-responsive {
+             font-size: 1rem !important;
+          }
+          
+          .service-details-responsive {
+             gap: 1rem !important;
+             flex-direction: column; /* Stack details */
+          }
+          
+          /* ADD-ONS SECTION */
+          .addons-grid-responsive {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; /* 2 columns for add-ons */
+            padding: 0 1rem !important;
+            gap: 1rem !important;
+          }
+          
+          .addon-image-responsive {
+            height: 120px !important;
+          }
+          
+          .addon-title-responsive {
+             font-size: 1.1rem !important;
+             margin-bottom: 0.5rem !important;
+          }
+          
+          .addon-card > div:last-child {
+             padding: 1rem !important;
+          }
+          
+          /* PRICING TABLE SECTION */
+          .pricing-table-responsive {
+             padding: 0 !important;
+          }
+          
+          .table-header-responsive,
+          .table-row-responsive {
+             grid-template-columns: 3fr 0fr 1fr !important; /* Duration column hidden */
+             padding: 1rem 1.5rem !important;
+             gap: 0.5rem !important;
+          }
+          
+          .table-column-duration-responsive {
+             display: none !important; /* Hide duration column on mobile */
+          }
+          
+          .table-column-service-responsive {
+             font-size: 0.95rem !important;
+          }
+
+          /* BOOKING CTA SECTION */
+          .booking-section-responsive {
+            padding: 3rem 0 !important;
+          }
+          
+          .booking-content-responsive {
+            grid-template-columns: 1fr !important; /* Stack content and buttons */
+            gap: 2rem !important;
+          }
+          
+          .booking-title-responsive {
+            font-size: 2rem !important;
+            margin-bottom: 1rem !important;
+          }
+          
+          .booking-text-responsive {
+             text-align: center;
+          }
+          
+          .booking-info-responsive {
+            flex-direction: column; /* Stack info items */
+            gap: 1rem !important;
+          }
+          
+          .info-item-responsive {
+             justify-content: center;
+          }
+          
+          .booking-actions-responsive {
+            flex-direction: column !important; /* Stack buttons */
+          }
+          
+          .booking-actions-responsive button {
+            width: 100% !important; /* Full width buttons */
+            padding: 1rem 1.5rem !important;
+            font-size: 1rem !important;
+          }
         }
       `}</style>
     </Layout>
