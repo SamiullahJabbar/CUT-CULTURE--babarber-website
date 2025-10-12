@@ -33,7 +33,7 @@ const ServicesPage = () => {
             <div style={styles.serviceCard} className="service-card">
               <div style={{...styles.serviceImage, backgroundImage: 'url(https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="service-image-responsive">
                 <div style={styles.serviceOverlay}></div>
-                <div style={styles.servicePrice} className="service-price">₹20</div>
+                <div style={styles.servicePrice} className="service-price">$20</div>
                 <div style={styles.serviceContent}>
                   <h3 style={styles.serviceTitle} className="service-title-responsive">Professional Haircut</h3>
                   <p style={styles.serviceDescription} className="service-description-responsive">
@@ -63,7 +63,7 @@ const ServicesPage = () => {
             <div style={styles.serviceCard} className="service-card">
               <div style={{...styles.serviceImage, backgroundImage: 'url(https://plus.unsplash.com/premium_photo-1661382028468-38612d62a254?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="service-image-responsive">
                 <div style={styles.serviceOverlay}></div>
-                <div style={styles.servicePrice} className="service-price">₹25</div>
+                <div style={styles.servicePrice} className="service-price">$25</div>
                 <div style={styles.serviceContent}>
                   <h3 style={styles.serviceTitle} className="service-title-responsive">Haircut + Beard Trim</h3>
                   <p style={styles.serviceDescription} className="service-description-responsive">
@@ -93,7 +93,7 @@ const ServicesPage = () => {
             <div style={styles.serviceCard} className="service-card">
               <div style={{...styles.serviceImage, backgroundImage: 'url(https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)'}} className="service-image-responsive">
                 <div style={styles.serviceOverlay}></div>
-                <div style={styles.servicePrice} className="service-price">₹15</div>
+                <div style={styles.servicePrice} className="service-price">$15</div>
                 <div style={styles.serviceContent}>
                   <h3 style={styles.serviceTitle} className="service-title-responsive">Signature Line-Up</h3>
                   <p style={styles.serviceDescription} className="service-description-responsive">
@@ -133,7 +133,7 @@ const ServicesPage = () => {
             <div style={styles.addonCard} className="addon-card">
               <div style={{...styles.addonImage, backgroundImage: 'url(https://www.barberchairllc.com/wp-content/uploads/2021/06/hot-towel-shave.png?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+₹5</div>
+                {/* <div style={styles.addonPrice}>+$5</div> */}
               </div>
               <div style={styles.addonContent}>
                 <h3 style={styles.addonTitle} className="addon-title-responsive">Hot Towel Treatment</h3>
@@ -144,7 +144,7 @@ const ServicesPage = () => {
             </div>
 
             {/* Add-on 2 */}
-            <div style={styles.addonCard} className="addon-card">
+            {/* <div style={styles.addonCard} className="addon-card">
               <div style={{...styles.addonImage, backgroundImage: 'url(https://www.fortythreeco.com/cdn/shop/articles/Dental_Videos_5.png?v=1747160912&width=1500?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
                 <div style={styles.addonPrice}>+₹5</div>
@@ -155,13 +155,13 @@ const ServicesPage = () => {
                   Deep conditioning treatment with premium oils to soften and nourish your beard.
                 </p>
               </div>
-            </div>
+            </div> */}
 
             {/* Add-on 3 */}
             <div style={styles.addonCard} className="addon-card">
               <div style={{...styles.addonImage, backgroundImage: 'url(https://www.kelownaspa.ca/cdn/shop/files/istockphoto-1182948519-612x612_2000x.jpg?v=1720207693?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+₹5</div>
+                {/* <div style={styles.addonPrice}>+$5</div> */}
               </div>
               <div style={styles.addonContent}>
                 <h3 style={styles.addonTitle} className="addon-title-responsive">Scalp Massage</h3>
@@ -175,7 +175,7 @@ const ServicesPage = () => {
             <div style={styles.addonCard} className="addon-card">
               <div style={{...styles.addonImage, backgroundImage: 'url(https://blogs-images.forbes.com/josephdeacetis/files/2019/09/Styling-Close-Up-e1569867110789.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80)'}} className="addon-image-responsive">
                 <div style={styles.addonOverlay}></div>
-                <div style={styles.addonPrice}>+₹5</div>
+                {/* <div style={styles.addonPrice}>+$5</div> */}
               </div>
               <div style={styles.addonContent}>
                 <h3 style={styles.addonTitle} className="addon-title-responsive">Premium Styling</h3>

@@ -176,7 +176,7 @@ const HomePage = () => {
         </section>
 
         {/* WHY CHOOSE US SECTION WITH REAL IMAGES */}
-        <section style={styles.whyUs}>
+        {/* <section style={styles.whyUs}>
           <div style={styles.sectionHeader} className="section-header-responsive">
             <h2 style={styles.sectionTitle} className="section-title-responsive">Why Choose Cut Culture?</h2>
             <p style={styles.sectionSubtitle} className="section-subtitle-responsive">Experience the difference of premium barber services</p>
@@ -236,7 +236,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
 
       {/* Add CSS Animations and Media Queries */}
