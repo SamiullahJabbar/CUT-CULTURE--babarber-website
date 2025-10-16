@@ -149,15 +149,15 @@ const AboutPage = () => {
         </section>
 
         {/* VALUES SECTION */}
-        <section style={styles.valuesSection} className="section-responsive">
+        {/* <section style={styles.valuesSection} className="section-responsive">
           <div style={styles.sectionHeader} className="section-header-responsive">
             <h2 style={styles.sectionTitle} className="section-title-responsive">Our Values</h2>
             <p style={styles.sectionSubtitle}>The principles that guide everything we do</p>
           </div>
           
-          <div style={styles.valuesGrid} className="values-grid-responsive">
+          <div style={styles.valuesGrid} className="values-grid-responsive"> */}
             {/* Value Card 1 */}
-            <div 
+            {/* <div 
               className="value-card" 
               style={{
                 ...styles.valueCard,
@@ -175,10 +175,10 @@ const AboutPage = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
             
             {/* Value Card 2 */}
-            <div 
+            {/* <div 
               className="value-card" 
               style={{
                 ...styles.valueCard,
@@ -197,9 +197,9 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
-            
+             */}
             {/* Value Card 3 */}
-            <div 
+            {/* <div 
               className="value-card" 
               style={{
                 ...styles.valueCard,
@@ -217,10 +217,10 @@ const AboutPage = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
             
             {/* Value Card 4 */}
-            <div 
+            {/* <div 
               className="value-card" 
               style={{
                 ...styles.valueCard,
@@ -240,7 +240,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CULTURE SECTION */}
         <section style={styles.cultureSection} className="section-responsive">
